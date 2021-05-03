@@ -14,16 +14,13 @@ body {
   background-color: rgb(178, 208, 255);
 }
 
-main {
+main,
+.loader-container {
   min-height: calc(100vh - 160px);
 }
 
 a {
   text-decoration: none;
-}
-
-a:hover {
-  font-weight: bold;
 }
 
 button {
@@ -37,10 +34,6 @@ button {
 
 textarea {
   resize: none;
-}
-
-li a.active {
-  border-bottom: 2px solid rgb(178, 208, 255);
 }
 
 /* MEDIA QUERIES */
