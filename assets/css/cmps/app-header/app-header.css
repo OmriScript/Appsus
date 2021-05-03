@@ -11,3 +11,11 @@ header nav ul {
 header a {
   color: black;
 }
+
+a:hover {
+  border-bottom: 2px solid rgb(178, 208, 255);
+}
+
+li a.active {
+  border-bottom: 2px solid rgb(178, 208, 255);
+}
