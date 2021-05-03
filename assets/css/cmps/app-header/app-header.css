@@ -1,0 +1,13 @@
+header {
+  background-color: rgb(255, 255, 255);
+  height: 80px;
+}
+
+header nav,
+header nav ul {
+  height: 100%;
+}
+
+header a {
+  color: black;
+}

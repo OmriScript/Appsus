@@ -1,0 +1,9 @@
+footer {
+  background-color: black;
+  color: white;
+  height: 80px;
+}
+
+.app-footer {
+  height: inherit;
+}
