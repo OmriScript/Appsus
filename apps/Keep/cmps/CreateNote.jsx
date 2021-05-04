@@ -1,5 +1,4 @@
-import { CreateNoteInput } from './CreateNoteInput.jsx';
-
+import { NoteInput } from './NoteInput.jsx';
 
 export function CreateNote() {
 
@@ -7,9 +6,11 @@ export function CreateNote() {
         console.log(ev.target);
     }
 
+
+
     return (
-        <div className="note-create flex">
-            <CreateNoteInput />
+        <div className="note-create flex justify-center align-center">
+            <NoteInput />
             <div className="note-control-panel flex">
                 <div className="note-btn-container ">
                     <button onClick={handleBtnClick}>
