@@ -1,3 +1,5 @@
+import { utilService } from '../../../services/util-service.js';
+
 export const noteService = {
   query,
 };
@@ -5,6 +7,7 @@ export const noteService = {
 const KEY = 'notes';
 let gNotes = [
   {
+    id: utilService.makeId(),
     type: 'NoteText',
     isPinned: true,
     info: {
@@ -12,6 +15,7 @@ let gNotes = [
     },
   },
   {
+    id: utilService.makeId(),
     type: 'NoteImg',
     info: {
       url: 'http://some-img/me',
@@ -22,6 +26,7 @@ let gNotes = [
     },
   },
   {
+    id: utilService.makeId(),
     type: 'NoteTodos',
     info: {
       label: 'How was it:',

@@ -1,0 +1,27 @@
+.note-preview {
+  /* height: 100px; */
+  width: 100%;
+  min-height: 100px;
+  background-color: rgb(14, 67, 138);
+  color: white;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.note-preview [contentEditable] {
+  outline: none;
+}
+
+.note-preview button {
+  background-color: rgb(14, 67, 138);
+  outline: none;
+  border: none;
+}
+
+.note-preview-control-panel i {
+  font-size: 0.7rem;
+}
+
+.note-preview-control-panel i:hover {
+  background-color: rgb(31, 94, 177);
+}
