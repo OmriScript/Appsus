@@ -8,10 +8,12 @@
 @import './cmps/home.css';
 
 /* mail imports */
-
 @import './apps/email/cmps/MailApp.css';
 
 /* keep imports */
 @import './apps/note/cmps/NoteApp.css';
+@import '../../apps/Keep/assets/CreateNote.css';
+@import '../../apps/Keep/assets/CreateNoteInput.css';
+@import '../../apps/Keep/assets/NoteList.css';
 
 /* book imports */
