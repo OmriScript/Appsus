@@ -12,5 +12,6 @@
 @import './apps/email/cmps/MailApp.css';
 
 /* keep imports */
+@import './apps/note/cmps/NoteApp.css';
 
 /* book imports */
