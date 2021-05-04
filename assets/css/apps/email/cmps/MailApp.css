@@ -1,5 +1,55 @@
+.padding {
+  padding: 20px;
+}
+
 .mail-app {
-  background-color: cadetblue;
-  border: 1px solid #ff0000;
+  background-color: black;
   height: 100%;
+  font-size: 2rem;
+  /* font-weight:bold; */
+  color: white;
+}
+
+.mail-side-bar {
+  /* background-color: green; */
+  flex-grow: 1;
+  min-width: 250px;
+}
+.mail-side-bar * {
+  margin: 20px 0 10px 20px;
+  font-size: x-large;
+}
+
+.mail-compose-btn {
+  /* border-radius: 45px; */
+}
+
+.mail-main-container {
+  /* background-color: red; */
+  flex-grow: 5;
+}
+
+.mail-search-bar {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.mail-search-bar input {
+  padding: 20px;
+}
+
+.mail-search-bar select {
+  padding: 20px;
+}
+
+.mail-mails-container {
+  flex-grow: 10;
+}
+
+.mail-mail-preview {
+  display: grid;
+  grid-template-columns: 75px 150px 250px 400px 100px;
+  border-top: 1px solid;
+  margin: 10px;
+  padding: 20px;
 }
