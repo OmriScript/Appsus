@@ -1,10 +1,26 @@
-export function CreateNoteInput(props) {
+export function NoteInput(props) {
+
+    function handleInputSumbit(ev) {
+        // if user hit enter
+        if (ev.keyCode == 13) {
+            console.log(ev.target.value);
+            // create note in model
+
+            // create note in dom
+            clearFields(ev.target)
+        }
+    }
+
+    function clearFields(target) {
+        target.value = '';
+    }
+
 
 
 
     return (
         <div className="note-input-container">
-            <input type="text" placeholder="What's on your mind " />
+            <input type="text" placeholder="What's on your mind " onKeyDown={handleInputSumbit} />
 
 
 
