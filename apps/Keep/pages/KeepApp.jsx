@@ -33,7 +33,7 @@ export class KeepApp extends React.Component {
     return (
       <section className="note-app container">
         <CreateNote />
-        <NoteList />
+        <NoteList notes={notes} />
       </section>
     )
   }

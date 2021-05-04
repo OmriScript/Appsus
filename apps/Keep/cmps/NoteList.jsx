@@ -1,7 +1,11 @@
-export function NoteList() {
+import { NotePreview } from './NotePreview.jsx';
+
+export function NoteList({ notes }) {
     return (
-        <div>
-            <p>note list</p>
+        <div className="note-list">
+            {notes.map(note => {
+                return <NotePreview note={note} key={note.id} />
+            })}
         </div>
     )
 }

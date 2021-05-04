@@ -6,8 +6,6 @@ export function CreateNote() {
         console.log(ev.target);
     }
 
-
-
     return (
         <div className="note-create flex justify-center align-center">
             <NoteInput />
