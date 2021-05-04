@@ -1,54 +1,98 @@
-.padding {
-    padding: 20px;
-  }
-  
+
   .mail-app {
     background-color: rgb(48, 47, 47);
     height: 100%;
     font-size: 2rem;
-    /* font-weight:bold; */
     color: white;
+    
   }
   
   .mail-side-bar {
-    /* background-color: green; */
     flex-grow: 1;
-    min-width: 250px;
   }
+
   .mail-side-bar * {
     margin: 20px 0 10px 20px;
     font-size: x-large;
   }
   
-  .mail-compose-btn 
+  .mail-compose-btn {
+    width: 60%;
+    padding: 15px;
+    border-radius: 30px;
+    justify-content: center;
+  }
   
   .mail-main-container {
-    /* background-color: red; */
     flex-grow: 5;
+
   }
   
   .mail-search-bar {
     padding: 20px;
-    flex-grow: 1;
+    justify-content: center;
+    width: 70%;
   }
   
   .mail-search-bar input {
     padding: 20px;
-  }
-  
-  .mail-search-bar select {
-    padding: 20px;
+    width: 70%;
+    
   }
   
   .mail-mails-container {
-    flex-grow: 10;
+    flex-grow: 1;
+    overflow-y: scroll;
   }
   
   .mail-mail-preview {
     display: grid;
-    grid-template-columns: 75px 150px 250px 400px 100px;
-    border-top: 1px solid;
+    grid-template-columns: 0.5fr 1.5fr 3fr 4fr 1fr;
+    border-bottom: 1px solid;
     margin: 10px;
     padding: 20px;
   }
+
+  .mail-side-bar li{
+     list-style-type: none;
+  }
+
+  .mail-side-bar li:nth-child(1) {
+    border-left: 5px solid green;
+  }
+  .mail-side-bar li:nth-child(2) {
+    border-left: 5px solid yellow
+  }
+  .mail-side-bar li:nth-child(3) {
+    border-left: 5px solid blue;
+  }
+  .mail-side-bar li:nth-child(4) {
+    border-left: 5px solid red;
+  }
+
+
+  /* scroller css start ----------------------------------------
+/* width */
+.mail-mails-container::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+.mail-mails-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.mail-mails-container::-webkit-scrollbar-thumb {
+  background: radial-gradient(circle,#180b8a 0%, #35559b  100%);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.mail-mails-container::-webkit-scrollbar-thumb:hover {
+}
+
+/* scroller css END ----------------------------------------
+
   
