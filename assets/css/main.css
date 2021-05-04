@@ -2,10 +2,15 @@
 @import './helpers.css';
 @import './typography.css';
 
-@import './cmps/app-header/app-header.css';
-@import './cmps/footer/footer.css';
-@import './cmps/about/about.css';
-@import './cmps/book/book.css';
-@import './cmps/home/home.css';
-@import './cmps/keep/keep.css';
-@import './cmps/mail/mail.css';
+@import './cmps/about.css';
+@import './cmps/app-header.css';
+@import './cmps/footer.css';
+@import './cmps/home.css';
+
+/* mail imports */
+
+@import './apps/email/cmps/MailApp.css';
+
+/* keep imports */
+
+/* book imports */
