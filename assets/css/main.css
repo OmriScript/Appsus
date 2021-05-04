@@ -10,7 +10,6 @@
 /* mail imports */
 
 @import '../../apps/Mail/assets/css/MailApp.css';
-@import './apps/email/cmps/MailApp.css';
 
 /* keep imports */
 @import './apps/note/cmps/NoteApp.css';

@@ -1,20 +1,21 @@
 import { mailService } from '../services/mail-service.js'
+import { MailPreview } from '../../Mail/cmps/MailPreview.jsx'
 
 export class MailApp extends React.Component {
 
   state = {
-
+    inMails: null
   }
 
   componentDidMount() {
-    this.getInMAils()
+    this.getInMails()
   }
 
 
-  getInMAils = () => {
+  getInMails = () => {
     mailService.getInMails()
       .then(inMails => {
-        console.log(inMails);
+        this.setState({inMails})
       })
   }
 
@@ -49,14 +50,8 @@ export class MailApp extends React.Component {
 
           <section className="mail-mails-container " >
 
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
+            <MailPreview/>
 
-            </div>
             <div className="mail-mail-preview flex space-between ">
               <i>*</i>
               <div className="name">Name</div>
