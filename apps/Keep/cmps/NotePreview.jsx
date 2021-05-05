@@ -30,14 +30,21 @@ export class NotePreview extends React.Component {
 
     render() {
         const { note } = this.state;
+        console.log('note in preview', note);
 
         return (
             <div className="note-preview" >
+                {/* {note.info.imgUrl &&
+                 <p>{note.info.imgUrl}</p>} */}
 
-                {
+                {note.info.imgUrl && <img src={note.info.imgUrl}></img>}
+
+
+
+                {/* {
                     note.info.txt && <h1 className="note-preview-header" contentEditable="true" suppressContentEditableWarning={true} onChange={this.handleTitleChange}> {note.info.txt}
                     </h1>
-                }
+                } */}
                 < section className="note-preview-details" >
                     {< p contentEditable="true" suppressContentEditableWarning={true} > Edit me</p>}
                 </section >

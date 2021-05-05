@@ -15,10 +15,7 @@
   border: none;
   /* caret-color: blue; */
   padding-left: 10px;
-}
-
-.note-create input {
-  /* text-align: left; */
+  /* display: table-cell; */
   font-size: 1.5rem;
 }
 
