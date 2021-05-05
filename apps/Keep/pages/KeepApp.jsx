@@ -17,7 +17,12 @@ export class KeepApp extends React.Component {
     // }, 1000)
   }
 
-  loadNotes() {
+  componentDidUpdate() {
+    // this.loadNotes();
+
+  }
+
+  loadNotes = () => {
     noteService.query().then((notes) => {
       this.setState({ notes }, () => {
         console.log('state', this.state);
@@ -32,8 +37,8 @@ export class KeepApp extends React.Component {
 
     return (
       <section className="note-app container">
-        <CreateNote />
-        <NoteList notes={notes} />
+        <CreateNote loadNotes={this.loadNotes} />
+        <NoteList notes={notes} loadNotes={this.loadNotes} />
       </section>
     )
   }
