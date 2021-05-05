@@ -30,15 +30,41 @@ function deleteNote(noteId) {
   return Promise.resolve();
 }
 
-function createNote(input) {
+function createNote(inputVal, noteType) {
+  console.log(inputVal, noteType);
   let note = {
     id: utilService.makeId(),
-    type: 'NoteText',
+    type: noteType,
     isPinned: false,
-    info: {
-      txt: input,
-    },
   };
+
+  switch (noteType) {
+    case 'NoteText':
+      note.info = {
+        txt: inputVal,
+      };
+      break;
+    case 'NoteImg':
+      note.info = {
+        imgUrl: inputVal,
+      };
+      break;
+    case 'NoteVideo':
+      note.info = {
+        videoUrl: inputVal,
+      };
+      break;
+    case 'NoteTodos':
+      note.info = {
+        label: inputVal,
+        todos: [],
+      };
+      break;
+
+    default:
+      return 'switch error';
+  }
+
   addNote(note);
   console.log('new note', note);
   //   return note;

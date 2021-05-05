@@ -26,3 +26,7 @@
 .note-preview-control-panel i:hover {
   background-color: rgb(31, 94, 177);
 }
+
+.note-preview img {
+  width: 100%;
+}

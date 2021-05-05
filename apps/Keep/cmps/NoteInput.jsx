@@ -14,7 +14,7 @@ export class NoteInput extends React.Component {
         // if user hit enter
         if (ev.keyCode == 13) {
             this.setState({ noteType: ev.target.value }, () => {
-                console.log('1');
+                console.log(this.state);
             })
             noteService.createNote(ev.target.value)
             this.props.loadNotes();
