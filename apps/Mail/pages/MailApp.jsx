@@ -1,10 +1,10 @@
 import { mailService } from '../services/mail-service.js'
-import { MailPreview } from '../../Mail/cmps/MailPreview.jsx'
+import { MailsList } from '../../Mail/cmps/MailsList.jsx'
 
 export class MailApp extends React.Component {
 
   state = {
-    inMails: null
+    inMails: null,
   }
 
   componentDidMount() {
@@ -15,13 +15,13 @@ export class MailApp extends React.Component {
   getInMails = () => {
     mailService.getInMails()
       .then(inMails => {
-        this.setState({inMails})
+        this.setState({inMails}, ()=> {console.log(this.state.inMails);})
       })
   }
 
 
   render() {
-
+if (!this.state.inMails) return <div>Loading...</div> 
     return (
       <section className="mail-app flex">
 
@@ -48,108 +48,8 @@ export class MailApp extends React.Component {
             <input type="text" className="mail-search-input padding" placeholder="Search-mail" />
           </section>
 
-          <section className="mail-mails-container " >
-
-            <MailPreview/>
-
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            <div className="mail-mail-preview flex space-between ">
-              <i>*</i>
-              <div className="name">Name</div>
-              <div className="mail-subject">Subject</div>
-              <div className="mail-message">Message</div>
-              <div className="mail-time">Time</div>
-
-            </div>
-            
-          </section>
+            <MailsList inMails={this.state.inMails} />
+          
 
 
         </section>
