@@ -13,11 +13,12 @@
 .note-create input {
   outline: none;
   border: none;
-  caret-color: blue;
+  /* caret-color: blue; */
+  padding-left: 10px;
 }
 
 .note-create input {
-  text-align: center;
+  /* text-align: left; */
   font-size: 1.5rem;
 }
 
