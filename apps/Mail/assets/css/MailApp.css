@@ -9,6 +9,7 @@
   
   .mail-side-bar {
     flex-grow: 1;
+    min-width: 270px;
   }
 
   .mail-side-bar * {
@@ -47,7 +48,8 @@
   
   .mail-mail-preview {
     display: grid;
-    grid-template-columns: 0.5fr 1.5fr 3fr 4fr 1fr;
+    font-size: 1.3rem;
+    grid-template-columns: 0.5fr 1.5fr 3fr 4fr 1fr 1fr;
     border-bottom: 1px solid;
     margin: 10px;
     padding: 20px;
@@ -56,6 +58,18 @@
   .mail-side-bar li{
      list-style-type: none;
   }
+  .mail-preview-btn {
+    width: 25px;
+    padding:5px
+  }
+
+  .compose-page {
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+  }
+
+  /* TODO: change from px \  */
 
   .mail-side-bar li:nth-child(1) {
     border-left: 5px solid green;

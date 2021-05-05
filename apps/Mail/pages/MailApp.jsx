@@ -1,10 +1,12 @@
 import { mailService } from '../services/mail-service.js'
 import { MailsList } from '../../Mail/cmps/MailsList.jsx'
+import { ComposeMail } from './ComposeMail.jsx'
 
 export class MailApp extends React.Component {
 
   state = {
     inMails: null,
+    isCompose: true
   }
 
   componentDidMount() {
@@ -13,20 +15,20 @@ export class MailApp extends React.Component {
 
 
   getInMails = () => {
-    mailService.getInMails()
+    mailService.loadInMails()
       .then(inMails => {
-        this.setState({inMails}, ()=> {console.log(this.state.inMails);})
+        this.setState({ inMails }, () => { console.log(this.state.inMails); })
       })
   }
 
 
   render() {
-if (!this.state.inMails) return <div>Loading...</div> 
+    if (!this.state.inMails) return <div>Loading...</div>
     return (
       <section className="mail-app flex">
 
         <section className="mail-side-bar flex column ">
-          <button className="mail-compose-btn ">+Compose</button>
+          <button className="mail-compose-btn " onClick={()=>this.setState({isCompose:!this.state.isCompose})} >+Compose</button>
           <ul>
             <li className="mail-inbox-btn"><a > Inbox </a></li>
             <li className="mail-starred-btn"><a >Starred </a></li>
@@ -39,19 +41,17 @@ if (!this.state.inMails) return <div>Loading...</div>
 
         <section className="mail-main-container flex column">
 
-          <section className="mail-search-bar flex">
+        {!this.state.isCompose && <section className="mail-search-bar flex">
             <select className="padding">
               <option>All Mails</option>
               <option>Read</option>
               <option>Unread</option>
             </select>
             <input type="text" className="mail-search-input padding" placeholder="Search-mail" />
-          </section>
+          </section>}
 
-            <MailsList inMails={this.state.inMails} />
-          
-
-
+          {!this.state.isCompose && <MailsList inMails={this.state.inMails} getInMails={this.getInMails} />}
+          {this.state.isCompose && <ComposeMail />}
         </section>
 
 

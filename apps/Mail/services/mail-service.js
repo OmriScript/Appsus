@@ -1,9 +1,21 @@
-import {utilService} from '../../../services/util-service.js'
+import { utilService } from '../../../services/util-service.js'
 export const mailService = {
-  getInMails,
+  loadInMails,
+  deleteItem
 };
 
-function getInMails() {
+function deleteItem(id) {
+let items= inMails
+ const itemIdx = items.findIndex(item => {
+   return (item.id === id)
+ })
+ items = items.splice(itemIdx, 1);
+ alert('deleted');
+ console.log(inMails);
+}
+
+
+function loadInMails() {
   return Promise.resolve(inMails);
 }
 
@@ -22,7 +34,7 @@ const inMails = [
     message: 'Hi idan, the sprint 3 delivery is at May 6 20:30 AM',
     receivedTime: new Date().toLocaleDateString(),
     isRead: false,
-    id:utilService.makeId()
+    id: utilService.makeId()
   },
 ];
 
@@ -30,6 +42,6 @@ const outMails = {
   to: 'Omri',
   subject: 'sprint 3 kick of',
   message: 'Hi idan, the sprint 3 kick of will start at May 4 08:30 AM',
-  sendTime:new Date().toLocaleDateString(),
-  id:utilService.makeId()
+  sendTime: new Date().toLocaleDateString(),
+  id: utilService.makeId()
 };

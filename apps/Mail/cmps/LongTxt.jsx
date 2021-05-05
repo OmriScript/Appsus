@@ -11,10 +11,10 @@ export class LongTxt extends React.Component {
         const { isLongTxtShown } = this.state;
         // const btnTxt = isLongTxtShown ? 'less' : 'more';
         let txtShow;
-        if (isLongTxtShown || !isLongTxtShown && txt.length < 20) {
+        if (isLongTxtShown || !isLongTxtShown && txt.length < 40) {
             txtShow = txt;
         } else {
-            txtShow = txt.substring(0, 20) + '...';
+            txtShow = txt.substring(0, 40) + '...';
         }
 
         return (
