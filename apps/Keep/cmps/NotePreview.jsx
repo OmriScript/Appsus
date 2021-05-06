@@ -112,10 +112,10 @@ function NoteTodo({ note }) {
     return (
         <React.Fragment>
             <h3>{note.info.label}</h3>
-            <ul className="note-todo-list clean-list ">
-                <li className="flex space-between">
+            {/* <ul className="note-todo-list clean-list ">
+                <li className="note-todo-item flex space-between">
                     I am a todo
-                    <button >
+                    <button>
                         <i className="fas fa-times"></i>
                     </button>
                 </li>
@@ -123,7 +123,7 @@ function NoteTodo({ note }) {
 
             <input type="text" name="" placeholder="Enter a todo..." onChange={(e) => {
                 console.log(e.target.value);
-            }} />
+            }} /> */}
 
         </React.Fragment>
     )

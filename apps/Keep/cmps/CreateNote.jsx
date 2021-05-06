@@ -2,14 +2,15 @@ import { noteService } from '../services/Keep.service.js';
 
 export class CreateNote extends React.Component {
     state = {
-        noteType: 'NoteText',
+        noteType: 'NoteText'
     }
 
-    handleBtnClick(noteType) {
+    handleBtnClick(e, noteType) {
+        console.log('make me black');
+        console.log(e.target.className);
         this.setState({ noteType }, () => {
-            console.log(this.state);
+            console.log('state', this.state);
         })
-
     }
 
     handleInputSumbit = (ev) => {
@@ -41,29 +42,29 @@ export class CreateNote extends React.Component {
 
                 <div className="note-control-panel flex">
                     <div className="note-btn-container ">
-                        <button onClick={() => {
-                            this.handleBtnClick('NoteText')
+                        <button className={this.state.noteType === 'NoteText' ? 'active' : 'undefined'} onClick={(e) => {
+                            this.handleBtnClick(e, 'NoteText')
                         }}>
                             <i className="note-btn far fa-comment"></i>
                         </button>
                     </div>
                     <div className="note-btn-container">
-                        <button onClick={() => {
-                            this.handleBtnClick('NoteImg')
+                        <button className={this.state.noteType === 'NoteImg' ? 'active' : 'undefined'} onClick={(e) => {
+                            this.handleBtnClick(e, 'NoteImg')
                         }}>
                             <i className="note-btn far fa-image"></i>
                         </button>
                     </div>
                     <div className="note-btn-container">
-                        <button onClick={() => {
-                            this.handleBtnClick('NoteVideo')
+                        <button className={this.state.noteType === 'NoteVideo' ? 'active' : 'undefined'} onClick={(e) => {
+                            this.handleBtnClick(e, 'NoteVideo')
                         }}>
                             <i className="note-btn fab fa-youtube"></i>
                         </button>
                     </div>
                     <div className="note-btn-container">
-                        <button onClick={() => {
-                            this.handleBtnClick('NoteTodos')
+                        <button className={this.state.noteType === 'NoteTodos' ? 'active' : 'undefined'} onClick={(e) => {
+                            this.handleBtnClick(e, 'NoteTodos')
                         }}>
                             <i className="note-btn fas fa-list-ul"></i>
                         </button>
