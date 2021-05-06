@@ -41,3 +41,15 @@
 .note-preview ::placeholder {
   color: #fff;
 }
+
+.note-todo-list button {
+  color: rgb(253, 90, 90);
+}
+
+.note-todo-list .done {
+  text-decoration: line-through;
+}
+
+/* .note-todo-item:hover {
+  color: black;
+} */
