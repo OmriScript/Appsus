@@ -11,7 +11,7 @@ export class SentMails extends React.Component {
     }
 
     getOutMails = () => {
-        mailService.loadOutMails()
+        mailService.loadItems('outMails')
         .then(outMails => this.setState({outMails},()=> {console.log(this.state.outMails); }))
     }
 
@@ -19,7 +19,7 @@ export class SentMails extends React.Component {
         // const {outMails} = this.state;
         if (!this.state.outMails) return <div>Loading...</div>
         return (
-            <MailsList mails={this.state.outMails} getInMails={this.getOutMails} />
+            <MailsList mails={this.state.outMails} getMails={this.getOutMails} />
         )
     }
 }

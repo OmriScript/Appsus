@@ -28,7 +28,8 @@ export class ComposeMail extends React.Component {
             to: this.state.to,
             subject: this.state.subject,
             message: this.state.message,
-            id:utilService.makeId()
+            id:utilService.makeId(),
+            type: 'outMails'
         }
         mailService.saveItem(newSentMail)
         this.clearFields()
