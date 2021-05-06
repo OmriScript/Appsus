@@ -7,14 +7,15 @@ export class MailPreview extends React.Component {
         isOpen: false
     }
     onDeleteMail = () => {
-        mailService.deleteItem(this.props.mails,this.props.mail.id);
-        this.props.getInMails()
+        const {mails,mail} = this.props
+        mailService.deleteItem(mails,mail.id);
+        this.props.getMails(mail.type)
     }
     
     
     
     render() {
-        
+        // const {}
         const { mail } = this.props;
         return (
             <React.Fragment>
