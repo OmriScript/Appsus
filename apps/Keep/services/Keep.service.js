@@ -5,7 +5,9 @@ export const noteService = {
   query,
   createNote,
   deleteNote,
+  updateNote,
   handleImgSrcError,
+  saveNotesToStorage,
 };
 
 const KEY = 'notes';
@@ -19,15 +21,23 @@ function query() {
 
 function addNote(noteToAdd) {
   gNotes.unshift(noteToAdd);
-  _saveNotesToStorage();
+  saveNotesToStorage();
   return Promise.resolve(noteToAdd);
 }
 
 function deleteNote(noteId) {
   let noteIdx = gNotes.findIndex((note) => note.id === noteId);
   gNotes.splice(noteIdx, 1);
-  _saveNotesToStorage();
+  saveNotesToStorage();
   console.log('gNotes', gNotes);
+  return Promise.resolve();
+}
+
+function updateNote(noteId, note) {
+  let noteIdx = gNotes.findIndex((note) => note.id === noteId);
+  console.log('note in updateNote', note);
+  gNotes[noteIdx] = note;
+  saveNotesToStorage();
   return Promise.resolve();
 }
 
@@ -142,9 +152,9 @@ function _createNotes() {
     ];
   }
   gNotes = notes;
-  _saveNotesToStorage;
+  saveNotesToStorage;
 }
 
-function _saveNotesToStorage() {
+function saveNotesToStorage() {
   storageService.saveToStorage(KEY, gNotes);
 }
