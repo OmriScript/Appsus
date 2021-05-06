@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-color: rgb(178, 208, 255);
+  background-color: #202124;
 }
 
 main,
@@ -19,6 +19,10 @@ main,
   /* min-height: calc(100vh - 160px); */
   height: calc(100vh - 160px);
 }
+
+/* main {
+  background-color: #202124;
+} */
 
 a {
   text-decoration: none;
