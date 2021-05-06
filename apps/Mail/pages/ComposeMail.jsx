@@ -28,7 +28,7 @@ export class ComposeMail extends React.Component {
             to: this.state.to,
             subject: this.state.subject,
             message: this.state.message,
-            id:utilService.makeId(),
+            id: utilService.makeId(),
             type: 'outMails'
         }
         mailService.saveItem(newSentMail)
@@ -36,19 +36,20 @@ export class ComposeMail extends React.Component {
         this.props.toggleIsCompose()
     }
 
-    
+
 
     render() {
 
         return (
             <section className="compose-page flex" >
-                <form className="compose-page flex" onSubmit={this.onSendMail}>
+                <form className="compose-form flex column" onSubmit={this.onSendMail}>
+                <button onClick={()=> this.props.toggleIsCompose()}>X</button>
                     <div className="compose-header">New Message</div>
-                    <input type="email" name='to' placeholder="To:" value={this.state.to} required onChange={this.hundleChange} />
-                    <input type="text" name='cc' placeholder="cc:" value={this.state.cc} onChange={this.hundleChange} />
-                    <input type="text" name='subject' placeholder="subject:" value={this.state.subject} required onChange={this.hundleChange} />
-                    <textarea rows='30' name='message' required value={this.state.message} onChange={this.hundleChange} ></textarea>
-                    <button  >Send</button>
+                    <input type="email" name='to' placeholder="To:" required value={this.state.to}  onChange={this.hundleChange} />
+                    <input type="text" name='cc' placeholder="cc:"  value={this.state.cc} onChange={this.hundleChange} />
+                    <input type="text" name='subject' placeholder="subject:" required value={this.state.subject}  onChange={this.hundleChange} />
+                    <textarea rows='30' name='message' required  value={this.state.message} onChange={this.hundleChange} ></textarea>
+                    <button >Send</button>
                 </form>
 
             </section>
