@@ -144,8 +144,10 @@ function _createNotes() {
         info: {
           label: 'How was it:',
           todos: [
-            { txt: 'Do that', doneAt: null },
-            { txt: 'Do this', doneAt: 187111111 },
+            { txt: 'Eat', isDone: false },
+            { txt: 'Sleep', isDone: false },
+            { txt: 'Code', isDone: true },
+            { txt: 'Repeat', isDone: true },
           ],
         },
       },
