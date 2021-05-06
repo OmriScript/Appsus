@@ -43,7 +43,6 @@ function handleImgSrcError(image) {
 
 function createNote(inputVal, noteType) {
   if (!inputVal) return;
-  console.log(inputVal, noteType);
   let note = {
     id: utilService.makeId(),
     type: noteType,
