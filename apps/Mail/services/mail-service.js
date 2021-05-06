@@ -1,7 +1,8 @@
 import { utilService } from '../../../services/util-service.js'
 export const mailService = {
   loadInMails,
-  deleteItem
+  deleteItem,
+  saveItem
 };
 
 function deleteItem(id) {
@@ -14,6 +15,12 @@ let items= inMails
  console.log(inMails);
 }
 
+function saveItem (newItem) {
+let items = outMails;
+items.push(newItem);
+alert('Mail Sent')
+console.log(outMails);
+}
 
 function loadInMails() {
   return Promise.resolve(inMails);
@@ -38,10 +45,10 @@ const inMails = [
   },
 ];
 
-const outMails = {
+const outMails = [{
   to: 'Omri',
   subject: 'sprint 3 kick of',
   message: 'Hi idan, the sprint 3 kick of will start at May 4 08:30 AM',
   sendTime: new Date().toLocaleDateString(),
   id: utilService.makeId()
-};
+}];

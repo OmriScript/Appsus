@@ -16,7 +16,6 @@ export class MailPreview extends React.Component {
 
     render() {
         const { mail } = this.props
-        console.log(this.state.isOpen)
         return (
             <React.Fragment>
                 <div className="mail-mail-preview flex space-between " onClick={() => {

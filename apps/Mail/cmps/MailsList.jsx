@@ -1,6 +1,5 @@
 import { MailPreview } from './MailPreview.jsx'
 export function MailsList({ inMails,getInMails }) {
-    console.log(inMails);
     return (
 
         <section className="mail-mails-container " >

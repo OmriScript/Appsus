@@ -6,7 +6,7 @@ export class MailApp extends React.Component {
 
   state = {
     inMails: null,
-    isCompose: true
+    isCompose: false
   }
 
   componentDidMount() {
@@ -21,6 +21,10 @@ export class MailApp extends React.Component {
       })
   }
 
+  toggleIsCompose = () => {
+    this.setState({ isCompose: !this.state.isCompose })
+  }
+
 
   render() {
     if (!this.state.inMails) return <div>Loading...</div>
@@ -28,7 +32,7 @@ export class MailApp extends React.Component {
       <section className="mail-app flex">
 
         <section className="mail-side-bar flex column ">
-          <button className="mail-compose-btn " onClick={()=>this.setState({isCompose:!this.state.isCompose})} >+Compose</button>
+          <button className="mail-compose-btn " onClick={() => this.setState({ isCompose: !this.state.isCompose })} >+Compose</button>
           <ul>
             <li className="mail-inbox-btn"><a > Inbox </a></li>
             <li className="mail-starred-btn"><a >Starred </a></li>
@@ -41,17 +45,17 @@ export class MailApp extends React.Component {
 
         <section className="mail-main-container flex column">
 
-        {!this.state.isCompose && <section className="mail-search-bar flex">
+          <section className="mail-search-bar flex">
             <select className="padding">
               <option>All Mails</option>
               <option>Read</option>
               <option>Unread</option>
             </select>
             <input type="text" className="mail-search-input padding" placeholder="Search-mail" />
-          </section>}
+          </section>
 
-          {!this.state.isCompose && <MailsList inMails={this.state.inMails} getInMails={this.getInMails} />}
-          {this.state.isCompose && <ComposeMail />}
+          <MailsList inMails={this.state.inMails} getInMails={this.getInMails} />
+          {this.state.isCompose && <ComposeMail toggleIsCompose={this.toggleIsCompose} />}
         </section>
 
 
