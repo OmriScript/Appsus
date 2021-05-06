@@ -68,20 +68,18 @@
     width: 60%;
     background-color: rgb(48, 47, 47);
     color: rgb(173, 172, 169);
+    position:fixed;
+    right:50px;
+    bottom:0px;
     /* height: 800px; */
   }
-  .compose-page * {
+  .compose-form * {
     background-color: rgb(48, 47, 47);
     color: rgb(173, 172, 169);
     padding:20px
   }
 
-  .compose-page {
-    position:fixed;
-    right:50px;
-    bottom:0px;
-    
-  }
+  
 
   /* TODO: change from px \  */
 
