@@ -30,3 +30,14 @@
 .note-preview img {
   width: 100%;
 }
+
+.note-preview input {
+  color: #fff;
+  background-color: inherit;
+  border: none;
+  outline: none;
+}
+
+.note-preview ::placeholder {
+  color: #fff;
+}

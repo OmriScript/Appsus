@@ -5,49 +5,41 @@ export class NotePreview extends React.Component {
         note: this.props.note
     }
 
-
-    // func needs fixes and updated after input comp is taken care of
-    handleTitleChange = ({ target }) => {
-        const value = target.value;
+    // This function don't work. As a result <p> contentEditable wont save changes.
+    handleChange = ({ target }) => {
+        const field = this.state.note.info;
+        const value = target.innerText;
         this.setState(prevState => ({
             note: {
                 ...prevState.note,
-                [info.title]: value
+                // [info.title]: value
+                [field]: value
             }
-        }))
-        console.log('update h1');
+        }, () => console.log('state', this.state)))
+        // console.log('target', target.innerText);
+        // this.props.loadNotes();
+
     }
 
-
     onDeleteNote = () => {
-
         noteService.deleteNote(this.state.note.id);
         this.props.loadNotes();
-        // .then(() => {
-        //     console.log('deleted');
-        // })
+    }
+
+    addDefaultImgSrc(ev) {
+        ev.target.src = 'https://media.giphy.com/media/hrRJ41JB2zlgZiYcCw/giphy.gif';
     }
 
     render() {
         const { note } = this.state;
-        console.log('note in preview', note);
+        // console.log('note in preview', note);
 
         return (
             <div className="note-preview" >
-                {/* {note.info.imgUrl &&
-                 <p>{note.info.imgUrl}</p>} */}
+                <section className="note-preview-details" >
+                    {<DynamicNote note={note} addDefaultImgSrc={this.addDefaultImgSrc} />}
+                </section>
 
-                {note.info.imgUrl && <img src={note.info.imgUrl}></img>}
-
-
-
-                {/* {
-                    note.info.txt && <h1 className="note-preview-header" contentEditable="true" suppressContentEditableWarning={true} onChange={this.handleTitleChange}> {note.info.txt}
-                    </h1>
-                } */}
-                < section className="note-preview-details" >
-                    {< p contentEditable="true" suppressContentEditableWarning={true} > Edit me</p>}
-                </section >
                 <section className="note-preview-control-panel flex justify-end align-end">
                     <div className="note-preview-btn-container ">
                         <button>
@@ -66,7 +58,6 @@ export class NotePreview extends React.Component {
                     </div>
                     <div className="note-preview-btn-container ">
                         <button onClick={this.onDeleteNote}>
-
                             <i className="note-btn fas fa-trash"></i>
                         </button>
                     </div>
@@ -74,4 +65,66 @@ export class NotePreview extends React.Component {
             </div >
         )
     }
+}
+
+
+function DynamicNote({ note, addDefaultImgSrc }) {
+    switch (note.type) {
+        case 'NoteText':
+            return <NoteText note={note} />
+        case 'NoteImg':
+            return <NoteImg note={note} addDefaultImgSrc={addDefaultImgSrc} />
+
+        case 'NoteVideo':
+            return <NoteVideo note={note} />
+
+        case 'NoteTodos':
+            return <NoteTodo note={note} />
+        default:
+            console.log('switch error');
+            // return <NoteText note={note} />
+            break;
+    }
+}
+
+function NoteText({ note }) {
+    return (
+        <p contentEditable="true" suppressContentEditableWarning={true}>{note.info.txt}</p>
+    )
+}
+
+function NoteImg({ note, addDefaultImgSrc }) {
+    return (
+        <img src={note.info.imgUrl} onError={addDefaultImgSrc}></img>
+    )
+}
+
+function NoteVideo({ note }) {
+    return (
+        <iframe width="230" height="150" src={note.info.videoUrl} frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Embedded youtube" ></iframe>
+    )
+}
+
+function NoteTodo({ note }) {
+    return (
+        <React.Fragment>
+            <h3>{note.info.label}</h3>
+            <ul className="note-todo-list clean-list ">
+                <li className="flex space-between">
+                    I am a todo
+                    <button >
+                        <i className="fas fa-times"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <input type="text" name="" placeholder="Enter a todo..." onChange={(e) => {
+                console.log(e.target.value);
+            }} />
+
+        </React.Fragment>
+    )
 }

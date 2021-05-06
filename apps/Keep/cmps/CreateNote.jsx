@@ -1,6 +1,4 @@
-import { NoteInput } from './NoteInput.jsx';
 import { noteService } from '../services/Keep.service.js';
-
 
 export class CreateNote extends React.Component {
     state = {
@@ -8,7 +6,6 @@ export class CreateNote extends React.Component {
     }
 
     handleBtnClick(noteType) {
-        // console.log(noteType);
         this.setState({ noteType }, () => {
             console.log(this.state);
         })
@@ -18,7 +15,7 @@ export class CreateNote extends React.Component {
     handleInputSumbit = (ev) => {
         // if user hit enter
         if (ev.keyCode == 13) {
-            console.log('input:', ev.target.value);
+            // console.log('input:', ev.target.value);
 
             this.setState({ noteType: 'NoteText' }, () => {
                 // console.log(this.state);
@@ -38,12 +35,9 @@ export class CreateNote extends React.Component {
         return (
             <div className="note-create flex space-between align-center">
 
-                {/* <NoteInput loadNotes={this.props.loadNotes} noteType={noteType} /> */}
-
                 <div className="note-input-container">
                     {<DynamicNoteInput noteType={noteType} handleInputSumbit={this.handleInputSumbit} />}
                 </div>
-
 
                 <div className="note-control-panel flex">
                     <div className="note-btn-container ">
@@ -80,50 +74,27 @@ export class CreateNote extends React.Component {
     }
 }
 
-
-
-
-
 function DynamicNoteInput({ noteType, handleInputSumbit }) {
-
+    let plcholder;
     switch (noteType) {
         case 'NoteText':
-            return <NoteText noteType="txt" placeholder="What's on your mind..." handleInputSumbit={handleInputSumbit} />;
+            plcholder = "What's on your mind..."
+            break;
         case 'NoteImg':
-            return <NoteImg noteType="img" placeholder="Enter image Url..." handleInputSumbit={handleInputSumbit} />;
-
+            plcholder = "Enter image URL..."
+            break;
         case 'NoteVideo':
-            return <NoteVideo noteType="video" placeholder="Enter video Url..." handleInputSumbit={handleInputSumbit} />;
-
+            plcholder = "Enter video URL..."
+            break;
         case 'NoteTodos':
-            return <NoteTodo noteType="doto" placeholder="Enter comma separated list..." handleInputSumbit={handleInputSumbit} />;
+            plcholder = "Enter todo-list title..."
+            break;
         default:
-            return 'switch error'
+            plcholder = 'switch error';
+            break;
     }
 
-
-    function NoteText({ noteType, placeholder, handleInputSumbit }) {
-        return (
-            <input type={noteType} placeholder={placeholder} onKeyDown={handleInputSumbit} />
-        )
-    }
-
-    function NoteImg({ noteType, placeholder, handleInputSumbit }) {
-        return (
-            <input type={noteType} placeholder={placeholder} onKeyDown={handleInputSumbit} />
-        )
-    }
-
-    function NoteVideo({ noteType, placeholder, handleInputSumbit }) {
-        // console.log('handleInputSumbit', handleInputSumbit);
-        return (
-            <input type={noteType} placeholder={placeholder} onKeyDown={handleInputSumbit} />
-        )
-    }
-
-    function NoteTodo({ noteType, placeholder, handleInputSumbit }) {
-        return (
-            <input type={noteType} placeholder={placeholder} onKeyDown={handleInputSumbit} />
-        )
-    }
+    return (
+        <input name={noteType} placeholder={plcholder} onKeyDown={handleInputSumbit} />
+    )
 }

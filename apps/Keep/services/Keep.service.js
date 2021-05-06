@@ -5,6 +5,7 @@ export const noteService = {
   query,
   createNote,
   deleteNote,
+  handleImgSrcError,
 };
 
 const KEY = 'notes';
@@ -30,8 +31,18 @@ function deleteNote(noteId) {
   return Promise.resolve();
 }
 
+function changeVideoLinkEmbed(linkStr) {
+  let embedLink = linkStr.replace('watch?v=', 'embed/');
+  return embedLink;
+}
+
+function handleImgSrcError(image) {
+  let defaultImg = 'https://media.giphy.com/media/hrRJ41JB2zlgZiYcCw/giphy.gif';
+  image.src = defaultImg;
+}
+
 function createNote(inputVal, noteType) {
-  console.log(inputVal, noteType);
+  if (!inputVal) return;
   let note = {
     id: utilService.makeId(),
     type: noteType,
@@ -51,7 +62,7 @@ function createNote(inputVal, noteType) {
       break;
     case 'NoteVideo':
       note.info = {
-        videoUrl: inputVal,
+        videoUrl: changeVideoLinkEmbed(inputVal),
       };
       break;
     case 'NoteTodos':
@@ -79,20 +90,40 @@ function _createNotes() {
         type: 'NoteText',
         isPinned: true,
         info: {
-          txt: 'No breaks till tomorrow!',
+          txt: 'Edit Me!',
         },
       },
       {
         id: utilService.makeId(),
         type: 'NoteImg',
         info: {
-          url: 'http://some-img/me',
-          title: 'Me playing Mi',
+          imgUrl: 'https://media.giphy.com/media/hrRJ41JB2zlgZiYcCw/giphy.gif',
         },
         style: {
           backgroundColor: '#00d',
         },
       },
+      {
+        id: utilService.makeId(),
+        type: 'NoteImg',
+        info: {
+          imgUrl: 'https://media.giphy.com/media/2ilegKh8fMdJAVqbG2/giphy.gif',
+        },
+        style: {
+          backgroundColor: '#00d',
+        },
+      },
+      {
+        id: utilService.makeId(),
+        type: 'NoteVideo',
+        info: {
+          videoUrl: 'https://www.youtube.com/embed/fB8TyLTD7EE',
+        },
+        style: {
+          backgroundColor: '#333',
+        },
+      },
+
       {
         id: utilService.makeId(),
         type: 'NoteTodos',
