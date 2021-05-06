@@ -1,10 +1,10 @@
 import { MailPreview } from './MailPreview.jsx'
-export function MailsList({ inMails,getInMails }) {
+export function MailsList({ mails,getInMails }) {
     return (
 
         <section className="mail-mails-container " >
-            {inMails.map(mail =>{ 
-               return <MailPreview mail={mail} key={mail.id} getInMails={getInMails} />}
+            {mails.map(mail =>{ 
+               return <MailPreview mail={mail} key={mail.id} getInMails={getInMails} mails={mails} />}
             )}
         </section>
 

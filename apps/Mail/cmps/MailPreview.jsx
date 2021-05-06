@@ -6,20 +6,20 @@ export class MailPreview extends React.Component {
     state = {
         isOpen: false
     }
-
-    onDeleteMail = (mail) => {
-        mailService.deleteItem(mail.id);
+    onDeleteMail = () => {
+        mailService.deleteItem(this.props.mails,this.props.mail.id);
         this.props.getInMails()
     }
-
-  
-
+    
+    
+    
     render() {
-        const { mail } = this.props
+        
+        const { mail } = this.props;
         return (
             <React.Fragment>
                 <div className="mail-mail-preview flex space-between " onClick={() => {
-                    this.setState({ isOpen: !this.state.isOpen }, () => { console.log(this.state.isOpen) })
+                    this.setState({ isOpen: !this.state.isOpen })
                 }}>
                     <i>*</i>
                     <div className="name">{mail.from}</div>
