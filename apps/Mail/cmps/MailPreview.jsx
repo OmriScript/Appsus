@@ -12,7 +12,14 @@ export class MailPreview extends React.Component {
         this.props.getMails(mail.type)
     }
 
-
+   setReadState = (id, readState) => {
+     const inMails = this.state.inMails;
+     const idx = inMails.findIndex(item => item.id === id);
+     if (idx > -1) {
+       inMails[idx].isRead = readState;
+       this.setState({inMails});
+     }
+   }
      
 
     render() {
