@@ -1,12 +1,15 @@
 .note-preview {
   /* height: 100px; */
   width: 100%;
+  max-width: 250px;
   min-height: 100px;
   background-color: rgb(14, 67, 138);
   background-color: white;
   color: #444;
   padding: 10px;
   border-radius: 3px;
+  page-break-inside: avoid;
+  margin-bottom: 10px;
 }
 
 .note-preview [contentEditable] {

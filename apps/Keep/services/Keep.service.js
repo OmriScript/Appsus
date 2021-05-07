@@ -5,6 +5,7 @@ export const noteService = {
   query,
   createNote,
   deleteNote,
+  copyNote,
   updateNote,
   handleImgSrcError,
   saveNotesToStorage,
@@ -28,6 +29,16 @@ function addNote(noteToAdd) {
 function deleteNote(noteId) {
   let noteIdx = gNotes.findIndex((note) => note.id === noteId);
   gNotes.splice(noteIdx, 1);
+  saveNotesToStorage();
+  return Promise.resolve();
+}
+
+function copyNote(noteId) {
+  let noteIdx = gNotes.findIndex((note) => note.id === noteId);
+  let notesCopy = JSON.parse(JSON.stringify(gNotes));
+  let noteCopy = notesCopy.copyWithin(0, noteIdx, noteIdx + 1).shift();
+  noteCopy.id = utilService.makeId();
+  gNotes.push(noteCopy);
   saveNotesToStorage();
   return Promise.resolve();
 }
@@ -106,7 +117,8 @@ function _createNotes() {
         type: 'NoteText',
         isPinned: true,
         info: {
-          txt: 'Edit Me!',
+          txt:
+            "Don't you hate it when people answer their own questions? I do.",
         },
         style: {
           backgroundColor: '#b1ffaa',

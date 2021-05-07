@@ -3,7 +3,6 @@ export function NoteColorPalette({ changeBgColor }) {
 
     const setNoteBgColor = (ev) => {
         changeBgColor(ev.target.value);
-        // console.log(ev.target.value);
     }
 
     return (
