@@ -21,6 +21,12 @@ export class MailApp extends React.Component {
 
   }
 
+  FilterList = (value) => {
+    this.state.mailsToShow.filter(mail => {
+      mail.includes
+    })
+
+  }
 
   getMails = (itemsName) => {
     mailService.loadItems(itemsName)
@@ -30,14 +36,14 @@ export class MailApp extends React.Component {
   }
 
   toggleIsCompose = () => {
-    this.setState({ isCompose: !this.state.isCompose }, () => console.log(this.state.isCompose))
+    this.setState({ isCompose: !this.state.isCompose })
   }
 
   openSentMailsPage = () => {
     this.setState({ isSentMails: true })
   }
 
-  
+
   // changeToTrue = (mails, theMail) => {
   //   console.log('hhii');
   //   const idx = mails.findIndex(mail => {
@@ -56,7 +62,8 @@ export class MailApp extends React.Component {
 
 
   render() {
-    if (!this.state.inMails) return <div>Loading...</div>
+    const { inMails, outMails, mailsToShow, isCompose } = this.state
+    if (!inMails) return <div>Loading...</div>
     return (
       <section className="mail-app flex">
 
@@ -66,8 +73,8 @@ export class MailApp extends React.Component {
 
           <MailFilter />
 
-          <MailsList mails={this.state.mailsToShow} getMails={this.getMails} changeToTrue={this.changeToTrue} />
-          {this.state.isCompose && <ComposeMail toggleIsCompose={this.toggleIsCompose} />}
+          <MailsList mails={mailsToShow} getMails={this.getMails} changeToTrue={this.changeToTrue} />
+          {isCompose && <ComposeMail toggleIsCompose={this.toggleIsCompose} />}
         </section>
 
         {/* {this.state.isSentMails && <SentMails />} */}

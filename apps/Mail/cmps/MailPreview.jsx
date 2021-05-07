@@ -12,13 +12,8 @@ export class MailPreview extends React.Component {
         this.props.getMails(mail.type)
     }
 
-    changeToTrue = (items, theItem) => {
-        console.log('hhii');
 
-        console.log(newItem);
-    }
-
-
+     
 
     render() {
         // const {}
@@ -27,7 +22,6 @@ export class MailPreview extends React.Component {
             <React.Fragment>
                 <div className="mail-mail-preview flex space-between "
                     onClick={() => {
-                        this.props.changeToTrue(this.props.mails, mail);
                         this.setState({ isOpen: !this.state.isOpen })
                     }}>
                     <div className="name">{mail.from}</div>
