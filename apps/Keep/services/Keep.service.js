@@ -60,6 +60,9 @@ function createNote(inputVal, noteType) {
     id: utilService.makeId(),
     type: noteType,
     isPinned: false,
+    style: {
+      backgroundColor: '#c988ff',
+    },
   };
 
   switch (noteType) {
@@ -105,6 +108,9 @@ function _createNotes() {
         info: {
           txt: 'Edit Me!',
         },
+        style: {
+          backgroundColor: '#b1ffaa',
+        },
       },
       {
         id: utilService.makeId(),
@@ -113,7 +119,7 @@ function _createNotes() {
           imgUrl: 'https://media.giphy.com/media/hrRJ41JB2zlgZiYcCw/giphy.gif',
         },
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#68fff0',
         },
       },
       {
@@ -123,7 +129,7 @@ function _createNotes() {
           imgUrl: 'https://media.giphy.com/media/2ilegKh8fMdJAVqbG2/giphy.gif',
         },
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#75acff',
         },
       },
       {
@@ -133,7 +139,7 @@ function _createNotes() {
           videoUrl: 'https://www.youtube.com/embed/fB8TyLTD7EE',
         },
         style: {
-          backgroundColor: '#333',
+          backgroundColor: '#c988ff',
         },
       },
 
@@ -148,6 +154,9 @@ function _createNotes() {
             { txt: 'Code', isDone: true },
             { txt: 'Repeat', isDone: true },
           ],
+        },
+        style: {
+          backgroundColor: '#ff8882',
         },
       },
     ];

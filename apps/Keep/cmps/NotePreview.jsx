@@ -1,10 +1,12 @@
 import { noteService } from '../services/Keep.service.js';
+import { NoteColorPalette } from './NoteColorPalette.jsx';
 
 export class NotePreview extends React.Component {
     state = {
         note: this.props.note,
         isEditModeOn: false,
-        isPanelHover: false
+        isPanelHover: false,
+        isShowColorPalette: false
     }
 
     // This function don't work. As a result <p> contentEditable wont save changes.
@@ -34,7 +36,18 @@ export class NotePreview extends React.Component {
     }
 
     handleMouseHover = () => {
-        this.setState({ isPanelHover: !this.state.isPanelHover })
+        this.setState({
+            isPanelHover: !this.state.isPanelHover,
+        })
+        if (this.state.isPanelHover === false) {
+            this.setState({
+                isShowColorPalette: false,
+            })
+        }
+    }
+
+    showColorPalette = () => {
+        this.setState({ isShowColorPalette: !this.state.isShowColorPalette })
     }
 
     addDefaultImgSrc(ev) {
@@ -157,13 +170,27 @@ export class NotePreview extends React.Component {
         }
     }
 
+    changeBgColor = (color) => {
+        this.setState({
+            note: {
+                ...this.state.note,
+                style: {
+                    backgroundColor: color
+                }
+            }
+        }, () => {
+            noteService.updateNote(this.state.note.id, this.state.note)
+        }
+        );
+
+    }
+
     render() {
         const { note, isEditModeOn, isPanelHover } = this.state;
         let infoKey = this.getFirstInfoKey()
-        // console.log('note in preview', note);
 
         return (
-            <div className="note-preview" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} >
+            <div className="note-preview" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} style={{ backgroundColor: note.style.backgroundColor }}>
                 <section className="note-preview-details" >
                     {<DynamicNote note={note} addDefaultImgSrc={this.addDefaultImgSrc} toggleTodo={this.toggleTodo} deleteTodo={this.deleteTodo} addTodo={this.addTodo} />}
                 </section>
@@ -177,7 +204,7 @@ export class NotePreview extends React.Component {
                             </button>
                         </div>
                         <div className="note-preview-btn-container ">
-                            <button>
+                            <button onClick={this.showColorPalette}>
                                 <i className="note-btn fas fa-palette"></i>
                             </button>
                         </div>
@@ -193,7 +220,7 @@ export class NotePreview extends React.Component {
                         </div>
                     </section>}
                 {isEditModeOn &&
-                    <section className="note-preview note-edit-control-panel flex column justify-end">
+                    <section className="note-edit-control-panel flex column justify-end">
 
                         <input type="text" defaultValue={note.info[infoKey]} onKeyDown={this.handleInputSumbit} />
                         {/* defaultValue={note.info.txt} */}
@@ -202,6 +229,7 @@ export class NotePreview extends React.Component {
                             <button onClick={this.onToggleEditNote}>Cancel</button>
                         </div>
                     </section>}
+                {this.state.isShowColorPalette && this.state.isPanelHover && <NoteColorPalette changeBgColor={this.changeBgColor} />}
             </div >
         )
     }
