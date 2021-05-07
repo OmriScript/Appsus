@@ -37,10 +37,6 @@ export class NotePreview extends React.Component {
         this.setState({ isPanelHover: !this.state.isPanelHover })
     }
 
-
-
-
-
     addDefaultImgSrc(ev) {
         ev.target.src = 'https://media.giphy.com/media/hrRJ41JB2zlgZiYcCw/giphy.gif';
     }
@@ -65,41 +61,8 @@ export class NotePreview extends React.Component {
                 noteService.updateNote(this.state.note.id, this.state.note);
             })
 
-
-
-            // this.setState({
-            //     note: {
-            //         id: this.state.note.id,
-            //         type: this.state.note.type,
-            //         info: {
-            //             // here i delete the doto properties. So app crash when trying to edit a todo.
-            //             [infoKey]: value
-            //         }
-            //     }
-            // }, () => {
-            //     console.log('state', this.state);
-            //     noteService.updateNote(this.state.note.id, this.state.note);
-            // })
-
-
-            // this.setState({
-            //     ...this.state.note,
-            //     // note: {
-            //     //     ...this.state.note.info,
-            //     //     info: {
-            //     //         [infoKey]: ev.target.value,
-            //     //         x: 24
-            //     //     }
-            //     // }
-            // }, () => {
-            //     console.log('state', this.state);
-            //     noteService.updateNote(this.state.note.id, this.state.note);
-            // })
-
             this.setState({ isEditModeOn: !this.state.isEditModeOn })
             this.clearFields(target);
-            // this.props.loadNotes();
-
             // noteService.saveNotesToStorage();
         }
     }
@@ -168,6 +131,32 @@ export class NotePreview extends React.Component {
         })
     }
 
+    addTodo = (ev, value) => {
+        if (ev.target.value === '') return
+        if (ev.keyCode == 13) {
+
+            const currTodo = {
+                txt: value,
+                isDone: false
+            }
+            const currTodos = this.state.note.info.todos;
+            currTodos.push(currTodo);
+            this.setState({
+                note: {
+                    ...this.state.note,
+                    info: {
+                        ...this.state.note.info,
+                        todos: [
+                            ...currTodos
+                        ]
+                    }
+                }
+            });
+            noteService.updateNote(this.state.note.id, this.state.note);
+            ev.target.value = '';
+        }
+    }
+
     render() {
         const { note, isEditModeOn, isPanelHover } = this.state;
         let infoKey = this.getFirstInfoKey()
@@ -176,7 +165,7 @@ export class NotePreview extends React.Component {
         return (
             <div className="note-preview" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} >
                 <section className="note-preview-details" >
-                    {<DynamicNote note={note} addDefaultImgSrc={this.addDefaultImgSrc} toggleTodo={this.toggleTodo} deleteTodo={this.deleteTodo} />}
+                    {<DynamicNote note={note} addDefaultImgSrc={this.addDefaultImgSrc} toggleTodo={this.toggleTodo} deleteTodo={this.deleteTodo} addTodo={this.addTodo} />}
                 </section>
 
                 {isPanelHover &&
@@ -218,7 +207,7 @@ export class NotePreview extends React.Component {
     }
 }
 
-function DynamicNote({ note, addDefaultImgSrc, toggleTodo, deleteTodo }) {
+function DynamicNote({ note, addDefaultImgSrc, toggleTodo, deleteTodo, addTodo }) {
     switch (note.type) {
         case 'NoteText':
             return <NoteText note={note} />
@@ -228,7 +217,7 @@ function DynamicNote({ note, addDefaultImgSrc, toggleTodo, deleteTodo }) {
             return <NoteVideo note={note} />
 
         case 'NoteTodos':
-            return <NoteTodo note={note} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+            return <NoteTodo note={note} toggleTodo={toggleTodo} deleteTodo={deleteTodo} addTodo={addTodo} />
         default:
             console.log('switch error');
             return <NoteText note={note} />
@@ -256,21 +245,11 @@ function NoteVideo({ note }) {
     )
 }
 
-function NoteTodo({ note, toggleTodo, deleteTodo }) {
+function NoteTodo({ note, toggleTodo, deleteTodo, addTodo }) {
     return (
         <React.Fragment>
             <h3>{note.info.label}</h3>
             <ul className="note-todo-list clean-list ">
-
-                {/* {console.log('noteTodo', note)} */}
-
-                {/* <li className={`note-todo-item flex space-between ${note.info.todos[0].isDone && 'done'} `}>
-                    {note.info.todos[0].txt}
-                    <button onClick={toggleTodo}>
-                        <i className="fas fa-times"></i>
-                    </button>
-                </li> */}
-
                 {note.info.todos.map((todo, idx) => {
                     return (
                         <li key={idx} className={`note-todo-item flex space-between ${todo.isDone && 'done'} `} onClick={() => {
@@ -286,23 +265,11 @@ function NoteTodo({ note, toggleTodo, deleteTodo }) {
                     )
                 })
                 }
-
-                {/* <li className="note-todo-item flex space-between done">
-                    No, me todo
-                    <button>
-                        <i className="fas fa-times"></i>
-                    </button>
-                </li>
-                <li className="note-todo-item flex space-between">
-                    What about me?
-                    <button>
-                        <i className="fas fa-times"></i>
-                    </button>
-                </li> */}
             </ul>
 
-            <input type="text" name="" placeholder="Enter a todo..." onChange={(e) => {
-                console.log(e.target.value);
+            <input type="text" name="" placeholder="Enter a todo..." onKeyDown={(ev) => {
+                // console.log(ev.target.value);
+                addTodo(ev, ev.target.value);
             }} />
 
         </React.Fragment>

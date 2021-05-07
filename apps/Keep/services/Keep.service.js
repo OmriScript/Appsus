@@ -81,11 +81,7 @@ function createNote(inputVal, noteType) {
     case 'NoteTodos':
       note.info = {
         label: inputVal,
-        todos: [
-          { txt: 'First todo', isDone: false },
-          { txt: 'Second todo', isDone: false },
-          { txt: 'Third todo', isDone: false },
-        ],
+        todos: [],
       };
       break;
 
