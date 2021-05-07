@@ -12,9 +12,6 @@ export class MailPreview extends React.Component {
         this.props.getMails(mail.type)
     }
 
-
-     
-
     render() {
         // const {}
         const { mail } = this.props;
@@ -22,7 +19,9 @@ export class MailPreview extends React.Component {
             <React.Fragment>
                 <div className="mail-mail-preview flex space-between "
                     onClick={() => {
-                        this.setState({ isOpen: !this.state.isOpen })
+                        this.setState({ isOpen: !this.state.isOpen }, () => {
+                            this.props.setReadState(mail.id, true);
+                        })
                     }}>
                     <div className="name">{mail.from}</div>
                     <div className="mail-subject">{mail.subject}</div>
