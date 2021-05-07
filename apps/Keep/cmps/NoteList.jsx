@@ -1,6 +1,9 @@
 import { NotePreview } from './NotePreview.jsx';
 
 export function NoteList({ notes, loadNotes }) {
+    if (notes.length === 0) {
+        return null;
+    }
     const isPinned = notes[0].isPinned;
     return (
         <div className="note-list">
