@@ -115,6 +115,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         type: 'NoteImg',
+        isPinned: false,
         info: {
           imgUrl: 'https://media.giphy.com/media/hrRJ41JB2zlgZiYcCw/giphy.gif',
         },
@@ -125,6 +126,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         type: 'NoteImg',
+        isPinned: false,
         info: {
           imgUrl: 'https://media.giphy.com/media/2ilegKh8fMdJAVqbG2/giphy.gif',
         },
@@ -135,6 +137,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         type: 'NoteVideo',
+        isPinned: false,
         info: {
           videoUrl: 'https://www.youtube.com/embed/fB8TyLTD7EE',
         },
@@ -146,6 +149,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         type: 'NoteTodos',
+        isPinned: false,
         info: {
           label: 'How was it:',
           todos: [
