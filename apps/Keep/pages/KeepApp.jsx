@@ -25,7 +25,7 @@ export class KeepApp extends React.Component {
   loadNotes = () => {
     noteService.query().then((notes) => {
       this.setState({ notes }, () => {
-        console.log('state from loadNotes', this.state);
+        // console.log('state from loadNotes', this.state);
 
       });
     })
