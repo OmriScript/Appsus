@@ -1,94 +1,38 @@
-import { mailService } from '../services/mail-service.js'
-import { MailsList } from '../../Mail/cmps/MailsList.jsx'
-import { ComposeMail } from './ComposeMail.jsx'
-import { SentMails } from './SentMails.jsx'
-import { MailFilter } from '../cmps/MailFilter.jsx'
-import { MailSideBar } from '../cmps/MailSideBar.jsx'
+const { Link } = ReactRouterDOM
+import { mailService } from '../services/mail-service.js';
+import { MailDetails } from '../cmps/MailDetails.jsx';
+import { LongTxt } from '../cmps/LongTxt.jsx';
+export class MailPreview extends React.Component {
+    state = {
+        isOpen: false
+    }
+    onDeleteMail = () => {
+        const { mails, mail } = this.props
+        mailService.deleteItem(mails, mail.id);
+        this.props.getMails(mail.type)
+    }
 
-export class MailApp extends React.Component {
+    render() {
+        // const {}
+        const { mail } = this.props;
+        return (
+            <React.Fragment>
+                <div className="mail-mail-preview flex space-between "
+                    onClick={() => {
+                        this.setState({ isOpen: !this.state.isOpen }, () => {
+                            this.props.setReadState(mail.id, true);
+                        })
+                    }}>
+                    <div className="name">{mail.from}</div>
+                    <div className="mail-subject">{mail.subject}</div>
+                    <div className="mail-message"><LongTxt txt={mail.message} /></div>
+                    <button className="mail-preview-btn" onClick={() => this.onDeleteMail({ mail })}><i className="fas fa-trash"></i></button>
+                    <div className="mail-time">{mail.receivedTime}</div>
+                </div>
 
-  state = {
-    mailsToShow: [],
-    inMails: [],
-    outMails: [],
-    isCompose: false,
-    isSentMails: false
-  }
+                { this.state.isOpen && <MailDetails mail={mail} />}
+            </React.Fragment>
+        )
+    }
 
-  componentDidMount() {
-    this.getMails('inMails')
-    // this.getInMails('outMails')
-
-  }
-
-  FilterList = (value) => {
-    this.state.mailsToShow.filter(mail => {
-      mail.includes
-    })
-
-  }
-
-  getMails = (itemsName) => {
-    mailService.loadItems(itemsName)
-      .then(items => {
-        this.setState({ [itemsName]: items, mailsToShow: items })
-      })
-  }
-  setReadState = (id, readState) => {
-     const inMails = this.state.inMails;
-     const idx = inMails.findIndex(item => item.id === id);
-     if (idx > -1) {
-       inMails[idx].isRead = readState;
-       this.setState({inMails});
-     }
-  }
-  toggleIsCompose = () => {
-    this.setState({ isCompose: !this.state.isCompose })
-  }
-
-  openSentMailsPage = () => {
-    this.setState({ isSentMails: true })
-  }
-
-
-  // changeToTrue = (mails, theMail) => {
-  //   console.log('hhii');
-  //   const idx = mails.findIndex(mail => {
-  //     return (theMail.id === mail.id)
-  //   })
-  //   this.setState({
-  //     [mails]: {
-  //       ...this.state[mails],
-  //       [idx]: {
-  //         ...this.state[mails][idx],
-  //         isRead: true
-  //       }
-  //     }
-  //   }, () => console.log(this.state))
-  // }
-
-
-  render() {
-    const { inMails, outMails, mailsToShow, isCompose } = this.state
-    if (!inMails) return <div>Loading...</div>
-    return (
-      <section className="mail-app flex">
-
-        <MailSideBar getMails={this.getMails} toggleIsCompose={this.toggleIsCompose} />
-
-        <section className="mail-main-container flex column">
-
-          <MailFilter />
-
-          <MailsList mails={mailsToShow} getMails={this.getMails} setReadState={this.setReadState} changeToTrue={this.changeToTrue} />
-          {isCompose && <ComposeMail toggleIsCompose={this.toggleIsCompose} />}
-        </section>
-
-        {/* {this.state.isSentMails && <SentMails />} */}
-
-      </section>
-
-
-    )
-  }
 }
