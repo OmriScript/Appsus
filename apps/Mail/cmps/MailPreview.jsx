@@ -13,7 +13,7 @@ export class MailPreview extends React.Component {
     }
 
 
-
+     
 
     render() {
         // const {}
