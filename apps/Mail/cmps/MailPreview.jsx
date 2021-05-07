@@ -7,22 +7,29 @@ export class MailPreview extends React.Component {
         isOpen: false
     }
     onDeleteMail = () => {
-        const {mails,mail} = this.props
-        mailService.deleteItem(mails,mail.id);
+        const { mails, mail } = this.props
+        mailService.deleteItem(mails, mail.id);
         this.props.getMails(mail.type)
     }
-    
-    
-    
+
+    changeToTrue = (items, theItem) => {
+        console.log('hhii');
+
+        console.log(newItem);
+    }
+
+
+
     render() {
         // const {}
         const { mail } = this.props;
         return (
             <React.Fragment>
-                <div className="mail-mail-preview flex space-between " onClick={() => {
-                    this.setState({ isOpen: !this.state.isOpen })
-                }}>
-                    <i>*</i>
+                <div className="mail-mail-preview flex space-between "
+                    onClick={() => {
+                        this.props.changeToTrue(this.props.mails, mail);
+                        this.setState({ isOpen: !this.state.isOpen })
+                    }}>
                     <div className="name">{mail.from}</div>
                     <div className="mail-subject">{mail.subject}</div>
                     <div className="mail-message"><LongTxt txt={mail.message} /></div>
