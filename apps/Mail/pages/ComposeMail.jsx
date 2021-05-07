@@ -23,7 +23,6 @@ export class ComposeMail extends React.Component {
 
     onSendMail = (ev) => {
         ev.preventDefault();
-        console.log(ev.target.value);
         const newSentMail = {
             to: this.state.to,
             subject: this.state.subject,
@@ -37,27 +36,23 @@ export class ComposeMail extends React.Component {
     }
 
 
-
     render() {
 
         return (
             <section className="compose-page flex" >
                 <form className="compose-form flex column" onSubmit={this.onSendMail}>
-                <button onClick={()=> this.props.toggleIsCompose()}>X</button>
+                    <button onClick={() => this.props.toggleIsCompose()}>X</button>
                     <div className="compose-header">New Message</div>
-                    <input type="email" name='to' placeholder="To:" required value={this.state.to}  onChange={this.hundleChange} />
-                    <input type="text" name='cc' placeholder="cc:"  value={this.state.cc} onChange={this.hundleChange} />
-                    <input type="text" name='subject' placeholder="subject:" required value={this.state.subject}  onChange={this.hundleChange} />
-                    <textarea rows='30' name='message' required  value={this.state.message} onChange={this.hundleChange} ></textarea>
+                    <input type="email" name='to' placeholder="To:" required value={this.state.to} onChange={this.hundleChange} />
+                    <input type="text" name='cc' placeholder="cc:" value={this.state.cc} onChange={this.hundleChange} />
+                    <input type="text" name='subject' placeholder="subject:" required value={this.state.subject} onChange={this.hundleChange} />
+                    <textarea rows='30' name='message' required value={this.state.message} onChange={this.hundleChange} ></textarea>
                     <button >Send</button>
                 </form>
 
             </section>
 
-
         )
-
-
 
     }
 
