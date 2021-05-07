@@ -77,3 +77,7 @@
   /* border: none; */
   /* outline: none; */
 }
+
+.note-todo-list li {
+  user-select: none;
+}

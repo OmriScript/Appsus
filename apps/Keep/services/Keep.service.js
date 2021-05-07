@@ -29,13 +29,16 @@ function deleteNote(noteId) {
   let noteIdx = gNotes.findIndex((note) => note.id === noteId);
   gNotes.splice(noteIdx, 1);
   saveNotesToStorage();
-  console.log('gNotes', gNotes);
   return Promise.resolve();
 }
 
 function updateNote(noteId, note) {
   let noteIdx = gNotes.findIndex((note) => note.id === noteId);
-  console.log('note in updateNote', note);
+
+  if (noteIdx === -1) {
+    console.log('Error. Cant find noteIdx in updateNote');
+    return;
+  }
   gNotes[noteIdx] = note;
   saveNotesToStorage();
   return Promise.resolve();
@@ -144,8 +147,10 @@ function _createNotes() {
         info: {
           label: 'How was it:',
           todos: [
-            { txt: 'Do that', doneAt: null },
-            { txt: 'Do this', doneAt: 187111111 },
+            { txt: 'Eat', isDone: false },
+            { txt: 'Sleep', isDone: false },
+            { txt: 'Code', isDone: true },
+            { txt: 'Repeat', isDone: true },
           ],
         },
       },
