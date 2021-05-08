@@ -55,6 +55,11 @@
     padding: 20px;
   }
 
+  .read {
+    background-color: rgb(85, 83, 83);
+    
+  }
+
   .mail-side-bar li{
      list-style-type: none;
   }
@@ -78,6 +83,7 @@
     color: rgb(173, 172, 169);
     padding:20px
   }
+
 
   
 

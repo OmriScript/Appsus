@@ -7,14 +7,14 @@ export class LongTxt extends React.Component {
         this.setState({ isLongTxtShown: !this.state.isLongTxtShown })
     }
     render() {
-        const { txt } = this.props;
+        const { txt,chars } = this.props;
         const { isLongTxtShown } = this.state;
         // const btnTxt = isLongTxtShown ? 'less' : 'more';
         let txtShow;
-        if (isLongTxtShown || !isLongTxtShown && txt.length < 40) {
+        if (isLongTxtShown || !isLongTxtShown && txt.length < chars) {
             txtShow = txt;
         } else {
-            txtShow = txt.substring(0, 40) + '...';
+            txtShow = txt.substring(0, chars) + '...';
         }
 
         return (

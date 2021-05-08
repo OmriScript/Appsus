@@ -2,7 +2,8 @@ import { MailDetails } from '../cmps/MailDetails.jsx';
 import { LongTxt } from '../cmps/LongTxt.jsx';
 export class MailPreview extends React.Component {
     state = {
-        isOpen: false
+        isOpen: false,
+        mailClass: 'mail-mail-preview flex space-between'
     }
 
     onDeleteItem = (event) => {
@@ -11,19 +12,19 @@ export class MailPreview extends React.Component {
         this.props.deleteItem(mail.id)
     }
     render() {
-        // const {}
         const { mail } = this.props;
+        const mailClass = (mail.type==='inMails' && mail.isRead)? 'mail-mail-preview flex space-between read' : 'mail-mail-preview flex space-between'
         return (
             <React.Fragment>
-                <div className="mail-mail-preview flex space-between "
+                <div className={mailClass}
                     onClick={() => {
                         this.setState({ isOpen: !this.state.isOpen }, () => {
                             this.props.setReadState(mail.id, true);
                         })
                     }}>
                     <div className="name">{mail.type === 'inMails' ? mail.from: mail.to}</div>
-                    <div className="mail-subject">{mail.subject}</div>
-                    <div className="mail-message"><LongTxt txt={mail.message} /></div>
+                    <div className="mail-subject"><LongTxt txt={mail.subject} chars={20}/></div>
+                    <div className="mail-message"><LongTxt txt={mail.message} chars={40} /></div>
                     <button className="mail-preview-btn" onClick={this.onDeleteItem}><i className="fas fa-trash"></i></button>
                     <div className="mail-time">{mail.date}</div>
                 </div>
