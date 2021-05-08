@@ -3,6 +3,8 @@ import { MailsList } from '../../Mail/cmps/MailsList.jsx'
 import { ComposeMail } from './ComposeMail.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailSideBar } from '../cmps/MailSideBar.jsx'
+import { MsgModal } from '../../../cmps/MsgModal.jsx';
+
 
 export class MailApp extends React.Component {
 
@@ -44,7 +46,7 @@ export class MailApp extends React.Component {
         item.message.includes(search) ||
         (item.from && item.from.includes(search)) ||
         (item.to && item.to.includes(search))
-        );
+      );
     });
     return filteredList;
   }
@@ -55,7 +57,7 @@ export class MailApp extends React.Component {
     const idx = mailBox.findIndex(item => item.id === id);
     if (idx > -1) {
       mailBox[idx].isRead = readState;
-      this.setState({ mailBox },()=>console.log(mailBox) );
+      this.setState({ mailBox }, () => console.log(mailBox));
     }
   }
   toggleIsCompose = () => {
@@ -94,11 +96,13 @@ export class MailApp extends React.Component {
     if (mailBox.length === 0) return <div>Loading...</div>
 
     const mailsToShow = this.filteredMailBox();
-    mailsToShow.sort((a,b)=>{
+    mailsToShow.sort((a, b) => {
       return b.date - a.date;
     });
     return (
       <section className="mail-app flex">
+        < MsgModal msg='Mail sent' />
+
 
         <MailSideBar setCurrentMailBox={this.setCurrentMailBox} toggleIsCompose={this.toggleIsCompose} />
 
