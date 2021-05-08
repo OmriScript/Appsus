@@ -71,4 +71,9 @@
 
 .note-todo-list li {
   user-select: none;
+  margin-bottom: 5px;
+}
+
+.note-todo-input::placeholder {
+  color: #fff;
 }

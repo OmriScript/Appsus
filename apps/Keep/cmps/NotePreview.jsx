@@ -2,6 +2,10 @@ import { noteService } from '../services/Keep.service.js';
 import { NoteColorPalette } from './NoteColorPalette.jsx';
 import { DynamicNote } from './DynamicNote.jsx';
 
+// TODO: fix the bug when updating a todo title
+// TODO: fix isPanelHover state bug when notes change position
+// TODO: fix and uncomment the Edit button
+
 export class NotePreview extends React.Component {
     state = {
         note: this.props.note,

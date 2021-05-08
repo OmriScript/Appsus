@@ -20,7 +20,7 @@ export function NoteTodo({ note, toggleTodo, deleteTodo, addTodo }) {
                 }
             </ul>
 
-            <input type="text" name="" placeholder="Enter a todo..." onKeyDown={(ev) => {
+            <input className="note-todo-input" type="text" name="" placeholder="Enter a todo..." onKeyDown={(ev) => {
                 addTodo(ev, ev.target.value);
             }} />
 

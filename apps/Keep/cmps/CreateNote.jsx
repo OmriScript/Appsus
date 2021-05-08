@@ -27,7 +27,7 @@ export class CreateNote extends React.Component {
     render() {
         const { noteType } = this.state;
         return (
-            <div className="note-create flex space-between align-center">
+            <div className="note-create flex align-center">
 
                 <div className="note-input-container">
                     {<DynamicNoteInput noteType={noteType} handleInputSumbit={this.handleInputSumbit} />}
