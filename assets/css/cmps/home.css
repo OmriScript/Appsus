@@ -1,14 +1,28 @@
 .home {
+  /* background-image: url('../../imgs/danielle-macinnes-IuLgi9PWETU-unsplash.jpg'); */
   background-image: url('../../imgs/pexels-pixabay-373076.jpg');
   max-width: 100%;
-  height: calc(100vh - 160px);
+  height: calc(100vh - 80px);
+  /* height: 100%; */
   background-size: cover;
   background-position: center;
+  color: #111;
+  /* color: rgb(0, 0, 0); */
+  filter: invert();
+}
 
-  color: white;
+.home h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
 
+<<<<<<< HEAD
   /* filter: grayscale(0%); */
   /* filter: contrast(1.5); */
   /* filter: blur(10px) */
   filter:invert()
+=======
+.home-content {
+  font-size: 20px;
+>>>>>>> b6a1447827c1f54fb2951a0e9e2da16bcc497de9
 }

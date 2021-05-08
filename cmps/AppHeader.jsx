@@ -9,11 +9,7 @@ export function AppHeader() {
         <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="/mail">Email</NavLink></li>
         <li><NavLink to="/keep">Keeps</NavLink></li>
-        <li><NavLink to="/book">Books</NavLink></li>
       </ul>
     </nav>
   )
 }
-
-
-

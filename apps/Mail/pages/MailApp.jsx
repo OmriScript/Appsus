@@ -3,6 +3,8 @@ import { MailsList } from '../../Mail/cmps/MailsList.jsx'
 import { ComposeMail } from './ComposeMail.jsx'
 import { MailFilter } from '../cmps/MailFilter.jsx'
 import { MailSideBar } from '../cmps/MailSideBar.jsx'
+import { MsgModal } from '../../../cmps/MsgModal.jsx';
+
 
 export class MailApp extends React.Component {
 
@@ -61,9 +63,13 @@ export class MailApp extends React.Component {
     const idx = mailBox.findIndex(item => item.id === id);
     if (idx > -1) {
       mailBox[idx].isRead = readState;
+<<<<<<< HEAD
       return mailService.updateItem(id,mailBox[idx]).then(() => {
        this.refreshMailBox();
       })
+=======
+      this.setState({ mailBox }, () => console.log(mailBox));
+>>>>>>> b6a1447827c1f54fb2951a0e9e2da16bcc497de9
     }
   }
 
@@ -93,6 +99,8 @@ export class MailApp extends React.Component {
     });
     return (
       <section className="mail-app flex">
+        < MsgModal msg='Mail sent' />
+
 
         <MailSideBar setCurrentMailBox={this.setCurrentMailBox} toggleIsCompose={this.toggleIsCompose} unReadCounter={this.state.unReadCounter} />
 

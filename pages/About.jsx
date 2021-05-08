@@ -2,9 +2,9 @@ const { NavLink, Route, Switch } = ReactRouterDOM
 
 function AboutTeam() {
   return (
-    <div>
+    <div className="about-team">
       <h4>The Team</h4>
-      <ol>
+      <ol class="clean-list">
         <li>Idan Levi</li>
         <li>Omri Madar</li>
       </ol>
@@ -14,9 +14,9 @@ function AboutTeam() {
 
 function AboutVision() {
   return (
-    <div>
-      <h4>Our Vision</h4>
-      <ul>
+    <div className="about-vision">
+      <h4 >Our Vision</h4>
+      <ul className="clean-list">
         <li>Code</li>
         <li>Eat</li>
         <li>Sleep</li>
@@ -27,10 +27,11 @@ function AboutVision() {
 }
 
 export function About() {
-  return <section className="container">
+  return <section className="about-container  container flex column flex-start align-center">
     <h2>About Us</h2>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, quis.</p>
-
+    <p>After only 9 academic hours of learning react from scratch,
+    </p>
+    <p>We joined forces and build this useful app in 96 hours as part of Coding Academy course.</p>
     <nav>
       <NavLink to="/about/team">Team</NavLink>
       <NavLink to="/about/vision">Vision</NavLink>

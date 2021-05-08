@@ -6,17 +6,16 @@
 @import './cmps/app-header.css';
 @import './cmps/footer.css';
 @import './cmps/home.css';
+@import './cmps/about.css';
+@import './cmps/MsgModal.css';
 
 /* mail imports */
 
 @import '../../apps/Mail/assets/css/MailApp.css';
 
 /* keep imports */
-@import './apps/note/cmps/NoteApp.css';
+@import '../../apps/Keep/assets/NoteApp.css';
 @import '../../apps/Keep/assets/CreateNote.css';
-/* @import '../../apps/Keep/assets/NoteInput.css'; */
 @import '../../apps/Keep/assets/NoteList.css';
 @import '../../apps/Keep/assets/NotePreview.css';
 @import '../../apps/Keep/assets/NoteColorPalette.css';
-
-/* book imports */
