@@ -1,4 +1,5 @@
 import { noteService } from '../services/Keep.service.js';
+import { DynamicNoteInput } from './DynamicNoteInput.jsx';
 
 export class CreateNote extends React.Component {
     state = {
@@ -6,21 +7,13 @@ export class CreateNote extends React.Component {
     }
 
     handleBtnClick(e, noteType) {
-        console.log('make me black');
-        console.log(e.target.className);
-        this.setState({ noteType }, () => {
-            console.log('state', this.state);
-        })
+        this.setState({ noteType });
     }
 
     handleInputSumbit = (ev) => {
         // if user hit enter
         if (ev.keyCode == 13) {
-            // console.log('input:', ev.target.value);
-
-            this.setState({ noteType: 'NoteText' }, () => {
-                // console.log(this.state);
-            })
+            this.setState({ noteType: 'NoteText' })
             noteService.createNote(ev.target.value, this.state.noteType)
             this.props.loadNotes();
             this.clearFields(ev.target)
@@ -73,29 +66,4 @@ export class CreateNote extends React.Component {
             </div>
         )
     }
-}
-
-function DynamicNoteInput({ noteType, handleInputSumbit }) {
-    let plcholder;
-    switch (noteType) {
-        case 'NoteText':
-            plcholder = "What's on your mind..."
-            break;
-        case 'NoteImg':
-            plcholder = "Enter image URL..."
-            break;
-        case 'NoteVideo':
-            plcholder = "Enter video URL..."
-            break;
-        case 'NoteTodos':
-            plcholder = "Enter todo-list title..."
-            break;
-        default:
-            plcholder = 'switch error';
-            break;
-    }
-
-    return (
-        <input name={noteType} placeholder={plcholder} onKeyDown={handleInputSumbit} />
-    )
 }

@@ -104,8 +104,6 @@ function createNote(inputVal, noteType) {
   }
 
   addNote(note);
-  console.log('new note', note);
-  //   return note;
 }
 
 function _createNotes() {
@@ -178,7 +176,7 @@ function _createNotes() {
     ];
   }
   gNotes = notes;
-  saveNotesToStorage;
+  saveNotesToStorage();
 }
 
 function saveNotesToStorage() {

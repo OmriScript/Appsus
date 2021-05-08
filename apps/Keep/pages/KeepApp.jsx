@@ -1,6 +1,5 @@
 import { CreateNote } from '../cmps/CreateNote.jsx';
 import { NoteList } from '../cmps/NoteList.jsx';
-
 import { noteService } from '../services/Keep.service.js';
 import { Loader } from '../../../cmps/Loader.jsx';
 
@@ -12,14 +11,6 @@ export class KeepApp extends React.Component {
 
   componentDidMount() {
     this.loadNotes();
-    // setTimeout(() => {
-    //   this.loadNotes()
-    // }, 1000)
-  }
-
-  componentDidUpdate() {
-    // this.loadNotes();
-
   }
 
   loadNotes = () => {
