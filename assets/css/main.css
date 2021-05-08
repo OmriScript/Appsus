@@ -6,6 +6,7 @@
 @import './cmps/app-header.css';
 @import './cmps/footer.css';
 @import './cmps/home.css';
+@import './cmps/about.css';
 
 /* mail imports */
 
@@ -18,5 +19,3 @@
 @import '../../apps/Keep/assets/NoteList.css';
 @import '../../apps/Keep/assets/NotePreview.css';
 @import '../../apps/Keep/assets/NoteColorPalette.css';
-
-/* book imports */

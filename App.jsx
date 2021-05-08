@@ -4,7 +4,6 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 import { Footer } from './cmps/Footer.jsx'
 import { Home } from './pages/Home.jsx';
 import { About } from './pages/About.jsx';
-import { BookApp } from './apps/Books/pages/BookApp.jsx';
 import { KeepApp } from './apps/Keep/pages/KeepApp.jsx';
 import { MailApp } from './apps/Mail/pages/MailApp.jsx';
 
@@ -19,7 +18,6 @@ export function App() {
                 <Switch>
                     <Route component={MailApp} path="/mail" />
                     <Route component={KeepApp} path="/keep" />
-                    <Route component={BookApp} path="/book" />
                     <Route component={About} path="/about/" />
                     <Route component={Home} path="/" />
                 </Switch>
