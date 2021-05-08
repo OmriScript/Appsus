@@ -10,6 +10,7 @@ export class MailApp extends React.Component {
     mailBox: [],
     search: null,
     isCompose: false,
+    unReadCounter: 0,
     currentMailBox: 'inMails'
   }
 
@@ -21,10 +22,16 @@ export class MailApp extends React.Component {
 
   refreshMailBox = () => {
     const { currentMailBox } = this.state;
-    return mailService.loadItems(currentMailBox)
-      .then(items => {
-        this.setState({ mailBox: items });
-      })
+    return Promise.all([
+      mailService.loadItems(currentMailBox),
+      mailService.countUnRead()
+    ]).then(([items, unReadCounter]) => {
+        this.setState({ mailBox: items, unReadCounter});
+    });
+  }
+
+  mailsCounter = () => { 
+    return this.state.unReadCounter;
   }
 
   setCurrentMailBox = (type) => {
@@ -44,20 +51,22 @@ export class MailApp extends React.Component {
         item.message.includes(search) ||
         (item.from && item.from.includes(search)) ||
         (item.to && item.to.includes(search))
-        );
+      );
     });
     return filteredList;
   }
-
 
   setReadState = (id, readState) => {
     const mailBox = this.state.mailBox;
     const idx = mailBox.findIndex(item => item.id === id);
     if (idx > -1) {
       mailBox[idx].isRead = readState;
-      this.setState({ mailBox },()=>console.log(mailBox) );
+      return mailService.updateItem(id,mailBox[idx]).then(() => {
+       this.refreshMailBox();
+      })
     }
   }
+
   toggleIsCompose = () => {
     this.setState({ isCompose: !this.state.isCompose })
   }
@@ -67,47 +76,32 @@ export class MailApp extends React.Component {
       this.refreshMailBox();
     })
   }
-  saveItem = (mail) => {
-    return mailService.saveItem(mail).then(() => {
+
+  createItem = (mail) => {
+    return mailService.createItem(mail).then(() => {
       return this.refreshMailBox();
     })
   }
-  // changeToTrue = (mails, theMail) => {
-  //   console.log('hhii');
-  //   const idx = mails.findIndex(mail => {
-  //     return (theMail.id === mail.id)
-  //   })
-  //   this.setState({
-  //     [mails]: {
-  //       ...this.state[mails],
-  //       [idx]: {
-  //         ...this.state[mails][idx],
-  //         isRead: true
-  //       }
-  //     }
-  //   }, () => console.log(this.state))
-  // }
-
 
   render() {
     const { mailBox, isCompose } = this.state
     if (mailBox.length === 0) return <div>Loading...</div>
 
     const mailsToShow = this.filteredMailBox();
-    mailsToShow.sort((a,b)=>{
+    mailsToShow.sort((a, b) => {
       return b.date - a.date;
     });
     return (
       <section className="mail-app flex">
 
-        <MailSideBar setCurrentMailBox={this.setCurrentMailBox} toggleIsCompose={this.toggleIsCompose} />
+        <MailSideBar setCurrentMailBox={this.setCurrentMailBox} toggleIsCompose={this.toggleIsCompose} unReadCounter={this.state.unReadCounter} />
 
         <section className="mail-main-container flex column">
 
           <MailFilter setFilter={this.setFilter} />
 
           <MailsList mails={mailsToShow} setReadState={this.setReadState} deleteItem={this.deleteItem} />
-          {isCompose && <ComposeMail toggleIsCompose={this.toggleIsCompose} saveItem={this.saveItem} />}
+          {isCompose && <ComposeMail toggleIsCompose={this.toggleIsCompose} createItem={this.createItem} />}
 
         </section>
 

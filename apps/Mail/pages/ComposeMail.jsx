@@ -23,7 +23,7 @@ export class ComposeMail extends React.Component {
             subject: this.state.subject,
             message: this.state.message
         }
-        this.props.saveItem(newSentMail).then(() => {
+        this.props.createItem(newSentMail).then(() => {
             this.clearFields();
             this.props.toggleIsCompose();
         })

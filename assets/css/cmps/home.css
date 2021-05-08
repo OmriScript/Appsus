@@ -10,4 +10,5 @@
   /* filter: grayscale(0%); */
   /* filter: contrast(1.5); */
   /* filter: blur(10px) */
+  filter:invert()
 }

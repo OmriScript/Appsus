@@ -78,6 +78,8 @@
     bottom:0px;
     /* height: 800px; */
   }
+
+  
   .compose-form * {
     background-color: rgb(48, 47, 47);
     color: rgb(173, 172, 169);
@@ -128,6 +130,4 @@
 /* scroller css END ----------------------------------------
 /*  */
 
-@media (max-width:500px) {
-  
-}
+
