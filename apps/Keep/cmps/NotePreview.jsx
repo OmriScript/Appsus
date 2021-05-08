@@ -1,10 +1,12 @@
 import { noteService } from '../services/Keep.service.js';
+import { NoteColorPalette } from './NoteColorPalette.jsx';
 
 export class NotePreview extends React.Component {
     state = {
         note: this.props.note,
         isEditModeOn: false,
-        isPanelHover: false
+        isPanelHover: false,
+        isShowColorPalette: false
     }
 
     // This function don't work. As a result <p> contentEditable wont save changes.
@@ -27,6 +29,11 @@ export class NotePreview extends React.Component {
         this.props.loadNotes();
     }
 
+    onCopyNote = () => {
+        noteService.copyNote(this.state.note.id);
+        this.props.loadNotes();
+    }
+
     onToggleEditNote = () => {
         this.setState({ isEditModeOn: !this.state.isEditModeOn })
         // noteService.editNote(this.state.note.id);
@@ -34,7 +41,18 @@ export class NotePreview extends React.Component {
     }
 
     handleMouseHover = () => {
-        this.setState({ isPanelHover: !this.state.isPanelHover })
+        this.setState({
+            isPanelHover: !this.state.isPanelHover,
+        })
+        if (this.state.isPanelHover === false) {
+            this.setState({
+                isShowColorPalette: false,
+            })
+        }
+    }
+
+    showColorPalette = () => {
+        this.setState({ isShowColorPalette: !this.state.isShowColorPalette })
     }
 
     addDefaultImgSrc(ev) {
@@ -45,9 +63,7 @@ export class NotePreview extends React.Component {
         // if user hit enter
         if (keyCode == 13) {
             let infoKey = this.getFirstInfoKey();
-            console.log('infoKey', infoKey);
             let value = target.value;
-
             this.setState({
                 note: {
                     ...this.state.note,
@@ -57,7 +73,6 @@ export class NotePreview extends React.Component {
                     }
                 }
             }, () => {
-                console.log('state', this.state);
                 noteService.updateNote(this.state.note.id, this.state.note);
             })
 
@@ -106,7 +121,6 @@ export class NotePreview extends React.Component {
                 }
             }
         }, () => {
-            console.log('state after toggleTodo', this.state);
             noteService.updateNote(this.state.note.id, this.state.note);
         })
     }
@@ -157,13 +171,38 @@ export class NotePreview extends React.Component {
         }
     }
 
+    changeBgColor = (color) => {
+        this.setState({
+            note: {
+                ...this.state.note,
+                style: {
+                    backgroundColor: color
+                }
+            }
+        }, () => {
+            noteService.updateNote(this.state.note.id, this.state.note)
+        }
+        );
+    }
+
+    togglePin = () => {
+        this.setState({
+            note: {
+                ...this.state.note,
+                isPinned: !this.state.note.isPinned
+            }
+        }, () => {
+            noteService.updateNote(this.state.note.id, this.state.note)
+        });
+        this.props.loadNotes();
+    }
+
     render() {
         const { note, isEditModeOn, isPanelHover } = this.state;
         let infoKey = this.getFirstInfoKey()
-        // console.log('note in preview', note);
 
         return (
-            <div className="note-preview" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} >
+            <div className="note-preview" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} style={{ backgroundColor: note.style.backgroundColor }}>
                 <section className="note-preview-details" >
                     {<DynamicNote note={note} addDefaultImgSrc={this.addDefaultImgSrc} toggleTodo={this.toggleTodo} deleteTodo={this.deleteTodo} addTodo={this.addTodo} />}
                 </section>
@@ -172,12 +211,12 @@ export class NotePreview extends React.Component {
                     <section className="note-preview-control-panel flex justify-end align-end">
 
                         <div className="note-preview-btn-container ">
-                            <button>
+                            <button onClick={this.togglePin}>
                                 <i className="note-btn fas fa-thumbtack"></i>
                             </button>
                         </div>
                         <div className="note-preview-btn-container ">
-                            <button>
+                            <button onClick={this.showColorPalette}>
                                 <i className="note-btn fas fa-palette"></i>
                             </button>
                         </div>
@@ -187,13 +226,18 @@ export class NotePreview extends React.Component {
                             </button>
                         </div>
                         <div className="note-preview-btn-container ">
+                            <button onClick={this.onCopyNote}>
+                                <i className="note-btn fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div className="note-preview-btn-container ">
                             <button onClick={this.onDeleteNote}>
                                 <i className="note-btn fas fa-trash"></i>
                             </button>
                         </div>
                     </section>}
                 {isEditModeOn &&
-                    <section className="note-preview note-edit-control-panel flex column justify-end">
+                    <section className="note-edit-control-panel flex column justify-end">
 
                         <input type="text" defaultValue={note.info[infoKey]} onKeyDown={this.handleInputSumbit} />
                         {/* defaultValue={note.info.txt} */}
@@ -202,6 +246,7 @@ export class NotePreview extends React.Component {
                             <button onClick={this.onToggleEditNote}>Cancel</button>
                         </div>
                     </section>}
+                {this.state.isShowColorPalette && this.state.isPanelHover && <NoteColorPalette changeBgColor={this.changeBgColor} />}
             </div >
         )
     }
@@ -268,7 +313,6 @@ function NoteTodo({ note, toggleTodo, deleteTodo, addTodo }) {
             </ul>
 
             <input type="text" name="" placeholder="Enter a todo..." onKeyDown={(ev) => {
-                // console.log(ev.target.value);
                 addTodo(ev, ev.target.value);
             }} />
 

@@ -5,6 +5,7 @@ export const noteService = {
   query,
   createNote,
   deleteNote,
+  copyNote,
   updateNote,
   handleImgSrcError,
   saveNotesToStorage,
@@ -28,6 +29,16 @@ function addNote(noteToAdd) {
 function deleteNote(noteId) {
   let noteIdx = gNotes.findIndex((note) => note.id === noteId);
   gNotes.splice(noteIdx, 1);
+  saveNotesToStorage();
+  return Promise.resolve();
+}
+
+function copyNote(noteId) {
+  let noteIdx = gNotes.findIndex((note) => note.id === noteId);
+  let notesCopy = JSON.parse(JSON.stringify(gNotes));
+  let noteCopy = notesCopy.copyWithin(0, noteIdx, noteIdx + 1).shift();
+  noteCopy.id = utilService.makeId();
+  gNotes.push(noteCopy);
   saveNotesToStorage();
   return Promise.resolve();
 }
@@ -60,6 +71,9 @@ function createNote(inputVal, noteType) {
     id: utilService.makeId(),
     type: noteType,
     isPinned: false,
+    style: {
+      backgroundColor: '#c988ff',
+    },
   };
 
   switch (noteType) {
@@ -103,43 +117,51 @@ function _createNotes() {
         type: 'NoteText',
         isPinned: true,
         info: {
-          txt: 'Edit Me!',
+          txt:
+            "Don't you hate it when people answer their own questions? I do.",
+        },
+        style: {
+          backgroundColor: '#b1ffaa',
         },
       },
       {
         id: utilService.makeId(),
         type: 'NoteImg',
+        isPinned: false,
         info: {
           imgUrl: 'https://media.giphy.com/media/hrRJ41JB2zlgZiYcCw/giphy.gif',
         },
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#68fff0',
         },
       },
       {
         id: utilService.makeId(),
         type: 'NoteImg',
+        isPinned: false,
         info: {
           imgUrl: 'https://media.giphy.com/media/2ilegKh8fMdJAVqbG2/giphy.gif',
         },
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#75acff',
         },
       },
       {
         id: utilService.makeId(),
         type: 'NoteVideo',
+        isPinned: false,
         info: {
           videoUrl: 'https://www.youtube.com/embed/fB8TyLTD7EE',
         },
         style: {
-          backgroundColor: '#333',
+          backgroundColor: '#c988ff',
         },
       },
 
       {
         id: utilService.makeId(),
         type: 'NoteTodos',
+        isPinned: false,
         info: {
           label: 'How was it:',
           todos: [
@@ -148,6 +170,9 @@ function _createNotes() {
             { txt: 'Code', isDone: true },
             { txt: 'Repeat', isDone: true },
           ],
+        },
+        style: {
+          backgroundColor: '#ff8882',
         },
       },
     ];
