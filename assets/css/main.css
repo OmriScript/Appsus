@@ -14,7 +14,7 @@
 /* keep imports */
 @import './apps/note/cmps/NoteApp.css';
 @import '../../apps/Keep/assets/CreateNote.css';
-@import '../../apps/Keep/assets/NoteInput.css';
+/* @import '../../apps/Keep/assets/NoteInput.css'; */
 @import '../../apps/Keep/assets/NoteList.css';
 @import '../../apps/Keep/assets/NotePreview.css';
 @import '../../apps/Keep/assets/NoteColorPalette.css';

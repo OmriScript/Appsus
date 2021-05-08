@@ -1,12 +1,5 @@
 .note-list-container {
-  /* display: flex;
-  flex-wrap: wrap; */
   column-count: 1;
-
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
-  grid-gap: 10px; */
-  /* margin: 0 auto; */
   margin-bottom: 50px;
 }
 
@@ -31,7 +24,6 @@
 }
 
 /* X-LARGE */
-
 @media (min-width: 1200px) {
   .note-list-container {
     column-count: 4;

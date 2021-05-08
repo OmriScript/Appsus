@@ -1,10 +1,7 @@
 .note-create {
-  /* border-top: 1px solid black; */
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px auto;
   padding: 0.5rem 0;
   background-color: #fff;
-  /* border: 1px solid red; */
   flex-direction: column;
   border-radius: 3px;
   box-shadow: 0 0 5px #7a7a7a;
@@ -13,19 +10,11 @@
 .note-create input {
   outline: none;
   border: none;
-  /* caret-color: blue; */
   padding-left: 10px;
-  /* display: table-cell; */
   font-size: 1.5rem;
 }
 
-/* .note-create input:focus {
-      outline: none;
-    } */
-
 .note-create button {
-  /* background-color: #fff; */
-  /* background-color: red; */
   color: #777;
   background-color: white;
   outline: none;
@@ -34,10 +23,6 @@
   height: 100%;
 }
 
-/* .note-btn-container :hover {
-      background-color: rgb(196, 53, 53);
-    } */
-
 .note-create button i:hover {
   color: black;
 }
@@ -45,14 +30,9 @@
 .note-create .active {
   color: black;
 }
-/* 
-    .note-create button i:active {
-      color: black;
-    } */
 
 .note-btn {
   font-size: 2rem;
-  /* padding: 15px 0; */
   padding: 0.5rem;
 }
 
@@ -60,14 +40,11 @@
   margin-right: 1.5rem;
 }
 
-/* .note-input-container,
-    .note-control-panel {
-      margin: 0 auto;
-    } */
-
+/* MEDIA QUERIES */
 /* MEDIUM */
 @media (min-width: 640px) {
   .note-create {
     flex-direction: row;
+    width: 600px;
   }
 }

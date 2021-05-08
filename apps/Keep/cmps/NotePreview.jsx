@@ -1,5 +1,10 @@
 import { noteService } from '../services/Keep.service.js';
 import { NoteColorPalette } from './NoteColorPalette.jsx';
+import { DynamicNote } from './DynamicNote.jsx';
+
+// TODO: fix the bug when updating a todo title
+// TODO: fix isPanelHover state bug when notes change position
+// TODO: fix and uncomment the Edit button
 
 export class NotePreview extends React.Component {
     state = {
@@ -7,21 +12,6 @@ export class NotePreview extends React.Component {
         isEditModeOn: false,
         isPanelHover: false,
         isShowColorPalette: false
-    }
-
-    // This function don't work. As a result <p> contentEditable wont save changes.
-    handleChange = ({ target }) => {
-        const field = this.state.note.info;
-        const value = target.innerText;
-        this.setState(prevState => ({
-            note: {
-                ...prevState.note,
-                // [info.title]: value
-                [field]: value
-            }
-        }, () => console.log('state', this.state)))
-        // console.log('target', target.innerText);
-        // this.props.loadNotes();
     }
 
     onDeleteNote = () => {
@@ -36,8 +26,6 @@ export class NotePreview extends React.Component {
 
     onToggleEditNote = () => {
         this.setState({ isEditModeOn: !this.state.isEditModeOn })
-        // noteService.editNote(this.state.note.id);
-        // this.props.loadNotes();
     }
 
     handleMouseHover = () => {
@@ -78,7 +66,6 @@ export class NotePreview extends React.Component {
 
             this.setState({ isEditModeOn: !this.state.isEditModeOn })
             this.clearFields(target);
-            // noteService.saveNotesToStorage();
         }
     }
 
@@ -100,10 +87,8 @@ export class NotePreview extends React.Component {
         return infoFirstKey;
     }
 
-
-    // fix this func
     toggleTodo = (idx) => {
-        // Messy. Ask for help with spread-operator in setState
+        // Messy. Ask for better way
         let todoIdx = idx;
         let currTodos = this.state.note.info.todos;
         let currTodo = currTodos[todoIdx];
@@ -240,7 +225,6 @@ export class NotePreview extends React.Component {
                     <section className="note-edit-control-panel flex column justify-end">
 
                         <input type="text" defaultValue={note.info[infoKey]} onKeyDown={this.handleInputSumbit} />
-                        {/* defaultValue={note.info.txt} */}
                         <div className="note-edit-btn-container flex space-between">
                             {/* <button onClick={this.onEditBtn}>Update</button> */}
                             <button onClick={this.onToggleEditNote}>Cancel</button>
@@ -250,72 +234,4 @@ export class NotePreview extends React.Component {
             </div >
         )
     }
-}
-
-function DynamicNote({ note, addDefaultImgSrc, toggleTodo, deleteTodo, addTodo }) {
-    switch (note.type) {
-        case 'NoteText':
-            return <NoteText note={note} />
-        case 'NoteImg':
-            return <NoteImg note={note} addDefaultImgSrc={addDefaultImgSrc} />
-        case 'NoteVideo':
-            return <NoteVideo note={note} />
-
-        case 'NoteTodos':
-            return <NoteTodo note={note} toggleTodo={toggleTodo} deleteTodo={deleteTodo} addTodo={addTodo} />
-        default:
-            console.log('switch error');
-            return <NoteText note={note} />
-    }
-}
-
-function NoteText({ note }) {
-    return (
-        <p>{note.info.txt}</p>
-    )
-}
-
-function NoteImg({ note, addDefaultImgSrc }) {
-    return (
-        <img src={note.info.imgUrl} onError={addDefaultImgSrc}></img>
-    )
-}
-
-function NoteVideo({ note }) {
-    return (
-        <iframe width="230" height="150" src={note.info.videoUrl} frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Embedded youtube" ></iframe>
-    )
-}
-
-function NoteTodo({ note, toggleTodo, deleteTodo, addTodo }) {
-    return (
-        <React.Fragment>
-            <h3>{note.info.label}</h3>
-            <ul className="note-todo-list clean-list ">
-                {note.info.todos.map((todo, idx) => {
-                    return (
-                        <li key={idx} className={`note-todo-item flex space-between ${todo.isDone && 'done'} `} onClick={() => {
-                            toggleTodo(idx)
-                        }}>
-                            {todo.txt}
-                            <button onClick={(ev) => {
-                                deleteTodo(ev, idx)
-                            }}>
-                                <i className="fas fa-times"></i>
-                            </button>
-                        </li>
-                    )
-                })
-                }
-            </ul>
-
-            <input type="text" name="" placeholder="Enter a todo..." onKeyDown={(ev) => {
-                addTodo(ev, ev.target.value);
-            }} />
-
-        </React.Fragment>
-    )
 }
