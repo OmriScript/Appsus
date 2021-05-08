@@ -55,7 +55,7 @@ export class MailApp extends React.Component {
     const idx = mailBox.findIndex(item => item.id === id);
     if (idx > -1) {
       mailBox[idx].isRead = readState;
-      this.setState({ mailBox });
+      this.setState({ mailBox },()=>console.log(mailBox) );
     }
   }
   toggleIsCompose = () => {
@@ -108,6 +108,7 @@ export class MailApp extends React.Component {
 
           <MailsList mails={mailsToShow} setReadState={this.setReadState} deleteItem={this.deleteItem} />
           {isCompose && <ComposeMail toggleIsCompose={this.toggleIsCompose} saveItem={this.saveItem} />}
+
         </section>
 
         {/* {this.state.isSentMails && <SentMails />} */}
