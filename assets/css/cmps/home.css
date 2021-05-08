@@ -6,7 +6,9 @@
   /* height: 100%; */
   background-size: cover;
   background-position: center;
-  color: #444;
+  color: #111;
+  /* color: rgb(0, 0, 0); */
+  filter: invert();
 }
 
 .home h2 {
