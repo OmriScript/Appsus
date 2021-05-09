@@ -187,40 +187,40 @@ export class NotePreview extends React.Component {
         let infoKey = this.getFirstInfoKey()
 
         return (
-            <div className="note-preview" onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} style={{ backgroundColor: note.style.backgroundColor }}>
+            <div className="note-preview " onMouseEnter={this.handleMouseHover} onMouseLeave={this.handleMouseHover} style={{ backgroundColor: note.style.backgroundColor }}>
                 <section className="note-preview-details" >
                     {<DynamicNote note={note} addDefaultImgSrc={this.addDefaultImgSrc} toggleTodo={this.toggleTodo} deleteTodo={this.deleteTodo} addTodo={this.addTodo} />}
                 </section>
 
-                {isPanelHover &&
-                    <section className="note-preview-control-panel flex justify-end align-end">
 
-                        <div className="note-preview-btn-container ">
-                            <button onClick={this.togglePin}>
-                                <i className="note-btn fas fa-thumbtack"></i>
-                            </button>
-                        </div>
-                        <div className="note-preview-btn-container ">
-                            <button onClick={this.showColorPalette}>
-                                <i className="note-btn fas fa-palette"></i>
-                            </button>
-                        </div>
-                        <div className="note-preview-btn-container ">
-                            <button onClick={this.onToggleEditNote}>
-                                <i className="note-btn fas fa-edit"></i>
-                            </button>
-                        </div>
-                        <div className="note-preview-btn-container ">
-                            <button onClick={this.onCopyNote}>
-                                <i className="note-btn fas fa-copy"></i>
-                            </button>
-                        </div>
-                        <div className="note-preview-btn-container ">
-                            <button onClick={this.onDeleteNote}>
-                                <i className="note-btn fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </section>}
+                <section className={`note-preview-control-panel flex justify-end align-end ${!isPanelHover && 'visibility-hidden'}`}>
+
+                    <div className="note-preview-btn-container ">
+                        <button onClick={this.togglePin}>
+                            <i className="note-btn fas fa-thumbtack"></i>
+                        </button>
+                    </div>
+                    <div className="note-preview-btn-container ">
+                        <button onClick={this.showColorPalette}>
+                            <i className="note-btn fas fa-palette"></i>
+                        </button>
+                    </div>
+                    <div className="note-preview-btn-container ">
+                        <button onClick={this.onToggleEditNote}>
+                            <i className="note-btn fas fa-edit"></i>
+                        </button>
+                    </div>
+                    <div className="note-preview-btn-container ">
+                        <button onClick={this.onCopyNote}>
+                            <i className="note-btn fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div className="note-preview-btn-container ">
+                        <button onClick={this.onDeleteNote}>
+                            <i className="note-btn fas fa-trash"></i>
+                        </button>
+                    </div>
+                </section>
                 {isEditModeOn &&
                     <section className="note-edit-control-panel flex column justify-end">
 

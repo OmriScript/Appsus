@@ -4,7 +4,7 @@ function AboutTeam() {
   return (
     <div className="about-team">
       <h4>The Team</h4>
-      <ol class="clean-list">
+      <ol className="clean-list">
         <li>Idan Levi</li>
         <li>Omri Madar</li>
       </ol>

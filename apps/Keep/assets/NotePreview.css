@@ -43,6 +43,10 @@
   outline: none;
 }
 
+.note-preview .visibility-hidden {
+  visibility: hidden;
+}
+
 .note-preview ::placeholder {
   color: #444;
 }
