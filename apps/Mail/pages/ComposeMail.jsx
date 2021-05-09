@@ -40,7 +40,7 @@ export class ComposeMail extends React.Component {
                     <input type="email" name='to' placeholder="To:" required value={this.state.to} onChange={this.handleChange} />
                     <input type="text" name='cc' placeholder="cc:" value={this.state.cc} onChange={this.handleChange} />
                     <input type="text" name='subject' placeholder="subject:" required value={this.state.subject} onChange={this.handleChange} />
-                    <textarea rows='30' name='message' required value={this.state.message} onChange={this.handleChange} ></textarea>
+                    <textarea rows='20' name='message' required value={this.state.message} onChange={this.handleChange} ></textarea>
                     <button >Send</button>
                 </form>
 
