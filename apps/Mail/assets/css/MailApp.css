@@ -10,11 +10,14 @@
   .mail-side-bar {
     flex-grow: 1;
     min-width: 270px;
+    border-right: 1px solid;
+    background-color: #141416;
   }
 
   .mail-side-bar * {
     margin: 20px 0 10px 20px;
     font-size: x-large;
+    cursor: pointer;
   }
   
   .mail-compose-btn {
@@ -22,10 +25,14 @@
     padding: 15px;
     border-radius: 30px;
     justify-content: center;
+    background-color: rgb(178, 178, 190);
+    
+
   }
   
   .mail-main-container {
     flex-grow: 5;
+    background-color: #141416;
 
   }
   
@@ -33,12 +40,19 @@
     padding: 20px;
     justify-content: center;
     width: 70%;
+    
   }
   
   .mail-search-bar input {
+    background-color: rgb(178, 178, 190);
+    color:#202124;
+    font-size: 1.2rem;
     padding: 20px;
     width: 70%;
     
+  }
+  .mail-search-bar select {
+    background-color: rgb(178, 178, 190);
   }
   
   .mail-mails-container {
@@ -49,14 +63,16 @@
   .mail-mail-preview {
     display: grid;
     font-size: 1.3rem;
-    grid-template-columns:  1.5fr 2fr 5fr 1fr 1fr;
+    grid-template-columns:  1.5fr 3fr 5fr 1fr 1fr;
     border-bottom: 1px solid;
     margin: 10px;
     padding: 20px;
   }
 
   .read {
-    background-color: rgb(85, 83, 83);
+    color:#141416 ;
+    /* font-weight: bold; */
+    background-color: rgb(151, 151, 161);
     
   }
 
@@ -69,6 +85,7 @@
   }
 
   .compose-page {
+    transition: 1;
     flex-direction: column;
     width: 60%;
     background-color: rgb(48, 47, 47);
@@ -119,7 +136,7 @@
 
 /* Handle */
 .mail-mails-container::-webkit-scrollbar-thumb {
-  background: radial-gradient(circle,#180b8a 0%, #35559b  100%);
+  background: radial-gradient(circle,rgb(178, 178, 190) 0%, #3f4144  100%);
   border-radius: 10px;
 }
 

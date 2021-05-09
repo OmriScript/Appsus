@@ -8,7 +8,6 @@ export class ComposeMail extends React.Component {
 
     clearFields = () => {
         this.setState({ to: "", cc: "", subject: "", message: "" })
-        alert('cleared')
     }
 
     handleChange = (ev) => {
@@ -36,8 +35,8 @@ export class ComposeMail extends React.Component {
         return (
             <section className="compose-page flex" >
                 <form className="compose-form flex column" onSubmit={this.onSendMail}>
-                    <button onClick={() => this.props.toggleIsCompose()}>X</button>
-                    <div className="compose-header">New Message</div>
+                   
+                    <div className="compose-header">New Message <button onClick={() => this.props.toggleIsCompose()}>X</button></div>
                     <input type="email" name='to' placeholder="To:" required value={this.state.to} onChange={this.handleChange} />
                     <input type="text" name='cc' placeholder="cc:" value={this.state.cc} onChange={this.handleChange} />
                     <input type="text" name='subject' placeholder="subject:" required value={this.state.subject} onChange={this.handleChange} />

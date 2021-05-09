@@ -20,7 +20,7 @@ function AboutVision() {
         <li>Code</li>
         <li>Eat</li>
         <li>Sleep</li>
-        <li>Repeat</li>
+        <li>Repeat()</li>
       </ul>
     </div>
   )
@@ -31,7 +31,7 @@ export function About() {
     <h2>About Us</h2>
     <p>After only 9 academic hours of learning react from scratch,
     </p>
-    <p>We joined forces and build this useful app in 96 hours as part of Coding Academy course.</p>
+    <p>We joined forces and build this useful app in 96 hours as part of Coding-Academy course.</p>
     <nav>
       <NavLink to="/about/team">Team</NavLink>
       <NavLink to="/about/vision">Vision</NavLink>

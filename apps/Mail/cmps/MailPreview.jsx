@@ -23,8 +23,8 @@ export class MailPreview extends React.Component {
                         })
                     }}>
                     <div className="name">{mail.type === 'inMails' ? mail.from: mail.to}</div>
-                    <div className="mail-subject"><LongTxt txt={mail.subject} chars={20}/></div>
-                    <div className="mail-message"><LongTxt txt={mail.message} chars={40} /></div>
+                    <div className="mail-subject"><LongTxt txt={mail.subject} chars={30}/></div>
+                    <div className="mail-message"><LongTxt txt={mail.message} chars={60} /></div>
                     <button className="mail-preview-btn" onClick={this.onDeleteItem}><i className="fas fa-trash"></i></button>
                     <div className="mail-time">{mail.date}</div>
                 </div>

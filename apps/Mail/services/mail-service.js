@@ -16,7 +16,6 @@ function createItem (newItem) {
   const id = utilService.makeId();
   item.id = id;
   mailList.push(item);
-  alert('Mail Sent');
   return Promise.resolve(id);
 }
 
@@ -52,8 +51,63 @@ function countUnRead () {
 
 const mailList = [
   {
-    from: 'Alon',
-    subject: 'INMAIL',
+    from: 'Migración Colombia',
+    subject: 'Centro Virtual de Atencion al Ciudadano CVAC',
+    message: `Su solicitud No. 20212410024782 ha sido contestada.
+
+    Si desea consultar el estado de su trámite por favor ingrese a http://www.migracioncolombia.gov.co
+    
+    
+    Dando cumplimiento al Decreto No. 417 de 2020 que declara el Estado de Emergencia Económica, Social y Ecológica en todo el territorio colombiano debido a la pandemia del Coronavirus COVID-19, y a los lineamientos establecidos en el artículo 5 del Decreto Legislativo No. 491 de 2020, su petición será atendida en un término de treinta y cinco (35) días hábiles, contados a partir del día hábil siguiente a la recepción.
+    
+    
+    Recuerde que el primer control contra el Coronavirus es usted. Mayor información en nuestra página web www.migracioncolombia.gov.co, o en la página web www.coronaviruscolombia.gov.co
+    
+    Este mensaje y sus adjuntos se dirigen exclusivamente a su destinatario, puede contener información privilegiada o confidencial y es para uso exclusivo de la persona o entidad de destino. Si no es usted el destinatario indicado, queda notificado de la lectura, utilización, divulgación y/o copia sin autorización puede estar prohibida en virtud de la legislación vigente. Si ha recibido este mensaje por error, le rogamos que nos lo comunique inmediatamente por esta misma vía y proceda a su destrucción.` ,
+    date: new Date().toLocaleDateString(),
+    isRead: false,
+    id: utilService.makeId(),
+    type:'inMails'
+  },
+  {
+    from: 'Tal Barak',
+    subject: 'Thank you for choosing coding acadmy!',
+    message: `Hi Idan,
+
+    We just want to take the opportunity to thank you for choosing [company name] as your provider of [product(s) or service(s) you provide]. We are proud of our satisfied clientele and look forward to many years of working together.
+    
+    You’ll be getting an email soon from your account representative, but if you have any questions in the meantime, you can respond to this email or call us at [phone number].
+    
+    Thank you for your business and [well wishes relevant to your offering]!
+    
+    The [company name] Team ` ,
+    date: new Date().toLocaleDateString(),
+    isRead: false,
+    id: utilService.makeId(),
+    type:'inMails'
+  },
+  {
+    from: 'Migración Colombia',
+    subject: 'Centro Virtual de Atencion al Ciudadano CVAC',
+    message: `Su solicitud No. 20212410024782 ha sido contestada.
+
+    Si desea consultar el estado de su trámite por favor ingrese a http://www.migracioncolombia.gov.co
+    
+    
+    Dando cumplimiento al Decreto No. 417 de 2020 que declara el Estado de Emergencia Económica, Social y Ecológica en todo el territorio colombiano debido a la pandemia del Coronavirus COVID-19, y a los lineamientos establecidos en el artículo 5 del Decreto Legislativo No. 491 de 2020, su petición será atendida en un término de treinta y cinco (35) días hábiles, contados a partir del día hábil siguiente a la recepción.
+    
+    
+    Recuerde que el primer control contra el Coronavirus es usted. Mayor información en nuestra página web www.migracioncolombia.gov.co, o en la página web www.coronaviruscolombia.gov.co
+    
+    Este mensaje y sus adjuntos se dirigen exclusivamente a su destinatario, puede contener información privilegiada o confidencial y es para uso exclusivo de la persona o entidad de destino. Si no es usted el destinatario indicado, queda notificado de la lectura, utilización, divulgación y/o copia sin autorización puede estar prohibida en virtud de la legislación vigente. Si ha recibido este mensaje por error, le rogamos que nos lo comunique inmediatamente por esta misma vía y proceda a su destrucción.` ,
+    date: new Date().toLocaleDateString(),
+    isRead: false,
+    id: utilService.makeId(),
+    type:'inMails'
+  },
+  {
+    from: 'Omri',
+    subject: 'Sprint 3',
     message: 'Hi idan, the sprint 3 kick of will start at May 4 08:30 AM lorem100 ',
     date: new Date().toLocaleDateString(),
     isRead: false,
@@ -88,9 +142,26 @@ const mailList = [
     type:'inMails'
   },
   {
-    from: 'Omri',
+    from: 'Tal Barak',
+    subject: 'Thank you for choosing coding acadmy!',
+    message: `Hi Idan,
+
+    We just want to take the opportunity to thank you for choosing [company name] as your provider of [product(s) or service(s) you provide]. We are proud of our satisfied clientele and look forward to many years of working together.
+    
+    You’ll be getting an email soon from your account representative, but if you have any questions in the meantime, you can respond to this email or call us at [phone number].
+    
+    Thank you for your business and [well wishes relevant to your offering]!
+    
+    The [company name] Team ` ,
+    date: new Date().toLocaleDateString(),
+    isRead: false,
+    id: utilService.makeId(),
+    type:'inMails'
+  },
+  {
+    from: 'Migración Colombia',
     subject: 'Centro Virtual de Atencion al Ciudadano CVAC',
-    message: `Su solicitud No. 20212410024782 ha sido contestada. Adjunto hemos enviado la respuesta.
+    message: `Su solicitud No. 20212410024782 ha sido contestada.
 
     Si desea consultar el estado de su trámite por favor ingrese a http://www.migracioncolombia.gov.co
     
@@ -106,6 +177,15 @@ const mailList = [
     id: utilService.makeId(),
     type:'inMails'
   },
+  {
+    from: 'Omri',
+    subject: 'Sprint 3',
+    message: 'Hi idan, the sprint 3 kick of will start at May 4 08:30 AM lorem100 ',
+    date: new Date().toLocaleDateString(),
+    isRead: false,
+    id: utilService.makeId(),
+    type:'inMails'
+  },  
   {
     from: 'Amit',
     subject: 'INBOX',

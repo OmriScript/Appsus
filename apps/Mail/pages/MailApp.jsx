@@ -13,7 +13,14 @@ export class MailApp extends React.Component {
     search: null,
     isCompose: false,
     unReadCounter: 0,
-    currentMailBox: 'inMails'
+    currentMailBox: 'inMails',
+    modal:{isShow:false, msg:null}
+  }
+
+  showModal = (msg='Complete',time=3000) => {
+
+    this.setState({modal: {isShow:true,msg}});
+    setTimeout(()=>{this.setState({modal: {isShow:false,msg:null}})},time);
   }
 
   componentDidMount() {
@@ -63,13 +70,9 @@ export class MailApp extends React.Component {
     const idx = mailBox.findIndex(item => item.id === id);
     if (idx > -1) {
       mailBox[idx].isRead = readState;
-<<<<<<< HEAD
       return mailService.updateItem(id,mailBox[idx]).then(() => {
        this.refreshMailBox();
       })
-=======
-      this.setState({ mailBox }, () => console.log(mailBox));
->>>>>>> b6a1447827c1f54fb2951a0e9e2da16bcc497de9
     }
   }
 
@@ -78,16 +81,20 @@ export class MailApp extends React.Component {
   }
 
   deleteItem = (id) => {
-    mailService.deleteItem(id).then(() => {
-      this.refreshMailBox();
+    return mailService.deleteItem(id).then(() => {
+      this.showModal('Mail Deleted', 3000);
+      return this.refreshMailBox();
     })
   }
 
   createItem = (mail) => {
     return mailService.createItem(mail).then(() => {
+      this.showModal('Mail Sent', 3000);
       return this.refreshMailBox();
     })
   }
+
+ 
 
   render() {
     const { mailBox, isCompose } = this.state
@@ -99,7 +106,7 @@ export class MailApp extends React.Component {
     });
     return (
       <section className="mail-app flex">
-        < MsgModal msg='Mail sent' />
+        {this.state.modal.isShow && <MsgModal msg={this.state.modal.msg} />}
 
 
         <MailSideBar setCurrentMailBox={this.setCurrentMailBox} toggleIsCompose={this.toggleIsCompose} unReadCounter={this.state.unReadCounter} />
