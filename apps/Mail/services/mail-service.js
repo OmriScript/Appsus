@@ -25,7 +25,6 @@ function deleteItem(id) {
      return (item.id === id)
    })
    mailList.splice(itemIdx, 1);
-   alert('deleted');
    return Promise.resolve();
 }
 
